@@ -2,10 +2,8 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: rgba(7, 14, 29, 0.78);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: #ffffff;
+  border-bottom: 1px solid #e5eaf2;
 }
 
 .inner {
@@ -28,7 +26,6 @@
   width: auto;
   height: 54px;
   object-fit: contain;
-  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.2));
 }
 
 .nav {
@@ -46,13 +43,13 @@
 .link {
   position: relative;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.92);
+  color: #10284a;
   padding: 6px 0;
   transition: color 0.22s ease;
 }
 
 .link:hover {
-  color: #ffd166;
+  color: #1d5bd1;
 }
 
 .link::after {
@@ -72,7 +69,7 @@
 }
 
 .active {
-  color: #ffd166;
+  color: #1d5bd1;
 }
 
 .active::after {
@@ -83,8 +80,8 @@
   display: none;
   width: 48px;
   height: 48px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid #dbe3ef;
+  background: #ffffff;
   border-radius: 14px;
   cursor: pointer;
   padding: 0;
@@ -98,7 +95,7 @@
 .bar {
   width: 22px;
   height: 2.5px;
-  background: white;
+  background: #10284a;
   border-radius: 999px;
   transition: transform 0.25s ease, opacity 0.25s ease;
 }
@@ -115,7 +112,7 @@
   transform: translateY(-8px) rotate(-45deg);
 }
 
-@media (max-width: 850px) {
+@media (max-width: 900px) {
   .inner {
     width: 100%;
     padding: 0 16px;
@@ -123,9 +120,9 @@
   }
 
   .logoImage {
-    height: 46px;
+    height: 44px;
     width: auto;
-    max-width: 180px;
+    max-width: 170px;
   }
 
   .burger {
@@ -137,13 +134,11 @@
     top: calc(100% + 10px);
     left: 16px;
     right: 16px;
-    background: rgba(9, 17, 31, 0.96);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: #ffffff;
+    border: 1px solid #e5eaf2;
     border-radius: 22px;
     padding: 12px;
-    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.28);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.1);
     opacity: 0;
     pointer-events: none;
     transform: translateY(-10px);
@@ -167,8 +162,8 @@
     display: block;
     padding: 14px 16px;
     border-radius: 14px;
-    color: white;
-    background: rgba(255, 255, 255, 0.03);
+    color: #10284a;
+    background: #f5f7fb;
   }
 
   .link::after {
@@ -176,13 +171,13 @@
   }
 
   .link:hover {
-    color: #ffd166;
-    background: rgba(255, 255, 255, 0.06);
+    color: #1d5bd1;
+    background: #edf3ff;
   }
 
   .active {
-    background: rgba(255, 209, 102, 0.12);
-    color: #ffd166;
+    background: #e3ecff;
+    color: #1d5bd1;
   }
 }
 
@@ -192,8 +187,8 @@
   }
 
   .logoImage {
-    height: 42px;
-    max-width: 160px;
+    height: 40px;
+    max-width: 150px;
   }
 
   .nav {
