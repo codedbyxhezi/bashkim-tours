@@ -1,0 +1,222 @@
+.heroSection {
+  position: relative;
+  min-height: 100vh;
+  background-image: url('/images/hero.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      110deg,
+      rgba(5, 10, 25, 0.88) 0%,
+      rgba(8, 18, 42, 0.72) 35%,
+      rgba(12, 33, 70, 0.44) 60%,
+      rgba(12, 33, 70, 0.18) 100%
+    );
+}
+
+.container {
+  width: min(1240px, 92%);
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.content {
+  max-width: 980px;
+  color: white;
+  padding: 110px 0 70px;
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(12px);
+  color: #ffd166;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: clamp(2.7rem, 6vw, 5rem);
+  line-height: 1.02;
+  margin-bottom: 20px;
+  max-width: 780px;
+  font-weight: 900;
+}
+
+.text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: rgba(244, 247, 255, 0.9);
+  max-width: 650px;
+  margin-bottom: 30px;
+}
+
+/* ========================= */
+/* SUCHBEREICH */
+/* ========================= */
+
+.searchWrapper {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.searchBox {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(140px, 1fr));
+  gap: 14px;
+  align-items: end;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(18px);
+  padding: 18px;
+  border-radius: 26px;
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.field select,
+.field input {
+  height: 56px;
+  border-radius: 14px;
+  border: none;
+  padding: 0 14px;
+  font-size: 0.95rem;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.searchButton {
+  height: 56px;
+  padding: 0 26px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #ffd166, #ffb703);
+  color: #0b1220;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  flex-shrink: 0;
+  box-shadow: 0 16px 34px rgba(255, 183, 3, 0.32);
+  transition: 0.2s;
+}
+
+.searchButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 40px rgba(255, 183, 3, 0.4);
+}
+
+/* ========================= */
+/* TABLET */
+/* ========================= */
+
+@media (max-width: 1150px) {
+  .searchWrapper {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .searchBox {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .searchButton {
+    width: 100%;
+  }
+}
+
+/* ========================= */
+/* MOBILE */
+/* ========================= */
+
+@media (max-width: 768px) {
+  .heroSection {
+    min-height: auto;
+    background-position: 65% center;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  .content {
+    padding: 90px 0 40px;
+  }
+
+  .title {
+    font-size: 2.2rem;
+  }
+
+  .text {
+    font-size: 1rem;
+  }
+
+  .searchWrapper {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .searchBox {
+    grid-template-columns: 1fr;
+    padding: 14px;
+  }
+
+  .searchButton {
+    width: 100%;
+  }
+}
+
+/* ========================= */
+/* SMALL MOBILE */
+/* ========================= */
+
+@media (max-width: 430px) {
+  .title {
+    font-size: 1.9rem;
+  }
+
+  .text {
+    font-size: 0.95rem;
+  }
+
+  .searchBox {
+    padding: 12px;
+  }
+
+  .field select,
+  .field input,
+  .searchButton {
+    height: 52px;
+  }
+}

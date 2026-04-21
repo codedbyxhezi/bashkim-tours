@@ -1,0 +1,63 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: white;
+  border-bottom: 1px solid #e5eaf2;
+}
+
+.inner {
+  width: min(1200px, 92%);
+  margin: 0 auto;
+  height: 75px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logoImage {
+  height: 50px;
+  width: auto;
+}
+
+/* Links */
+.navList {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+
+/* Default Link */
+.link {
+  position: relative;
+  font-weight: 600;
+  color: #10284a;
+  padding: 5px 0;
+  transition: 0.2s;
+}
+
+/* Hover Effekt (Underline Animation) */
+.link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0%;
+  height: 2px;
+  background: #1d5bd1;
+  transition: 0.3s;
+}
+
+.link:hover::after {
+  width: 100%;
+}
+
+/* Active Seite */
+.active {
+  color: #1d5bd1;
+}
+
+.active::after {
+  width: 100%;
+}
