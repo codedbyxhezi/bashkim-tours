@@ -77,6 +77,18 @@ export default function PopularTrips() {
           ))}
         </div>
       </div>
+        <div className={styles.whatsappHint}>
+        <p>Noch Fragen? Schreib uns direkt auf WhatsApp.</p>
+
+        <a
+          href="https://wa.me/491234567890"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.whatsappButton}
+        >
+        Jetzt auf WhatsApp schreiben
+        </a>
+      </div>
     </section>
   );
 }

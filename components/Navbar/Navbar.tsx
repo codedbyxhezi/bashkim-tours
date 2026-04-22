@@ -17,7 +17,7 @@ export default function Navbar() {
       <div className={styles.inner}>
         <Link href="/" className={styles.logo} onClick={closeMenu}>
           <Image
-            src="/images/logo.jpg"
+            src="/images/logo-dark.png"
             alt="Bashkim Tours Logo"
             width={170}
             height={60}

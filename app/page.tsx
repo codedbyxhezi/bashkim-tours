@@ -7,6 +7,8 @@ import PopularTrips from '@/components/PopularTrips/PopularTrips';
 import WhyUs from '@/components/WhyUs/WhyUs';
 import HowItWorks from '@/components/HowItWorks/HowItWorks';
 import CTASection from '@/components/CTASection/CTASection';
+import Testimonials from '@/components/Testimonials/Testimonials';
+import FAQ from '@/components/FAQ/FAQ';
 
 export default function Home() {
   const router = useRouter();
@@ -109,6 +111,8 @@ export default function Home() {
       <WhyUs />
       <HowItWorks />
       <CTASection />
+      <Testimonials />
+      <FAQ />
     </>
   );
 }

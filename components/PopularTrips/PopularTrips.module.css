@@ -1,6 +1,6 @@
 .section {
   padding: 90px 0;
-  background: #f8fbff;
+  background: #ffffff;
 }
 
 .container {
@@ -16,7 +16,7 @@
 }
 
 .subtitle {
-  color: #64748b;
+  color: #5a5e81;
   margin-bottom: 50px;
 }
 
@@ -28,8 +28,9 @@
 }
 
 /* CARD */
+
 .card {
-  background: white;
+  background: rgb(116, 115, 172);
   border-radius: 22px;
   overflow: hidden;
   transition: 0.3s;
@@ -42,6 +43,7 @@
 }
 
 /* IMAGE */
+
 .imageWrapper {
   position: relative;
   height: 180px;
@@ -61,6 +63,7 @@
 .content {
   padding: 20px;
   text-align: left;
+  background-color: #ffffff;
 }
 
 /* ROUTE */
@@ -68,7 +71,7 @@
   font-size: 1.2rem;
   font-weight: 700;
   margin-bottom: 10px;
-  color: #0f172a;
+  color: #11203f;
 }
 
 /* INFO */
@@ -99,6 +102,33 @@
 
 .button:hover {
   background: #1748a6;
+}
+
+.whatsappHint {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.whatsappHint p {
+  color: #e4a403; /* für dunklen Hintergrund */
+  font-size: 1.10rem;
+  margin-bottom: 14px;
+}
+
+.whatsappButton {
+  display: inline-block;
+  background: #25d366;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.whatsappButton:hover {
+  background: #1ebe5d;
+  transform: translateY(-2px);
 }
 
 /* Tablet */
