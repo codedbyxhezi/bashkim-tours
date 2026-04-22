@@ -1,0 +1,88 @@
+.button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* 🔥 WICHTIG: dunkler Hintergrund */
+  background: linear-gradient(135deg, #1d5bd1, #10284a);
+
+  box-shadow: 
+    0 10px 25px rgba(0,0,0,0.2),
+    0 0 0 4px rgba(255,255,255,0.9); /* weißer Ring */
+
+  opacity: 0;
+  transform: translateY(25px) scale(0.9);
+  transition: all 0.3s ease;
+
+  z-index: 999;
+}
+
+/* sichtbar */
+.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* ICON */
+.icon {
+  font-size: 22px;
+  color: white;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+/* GLOW RING */
+.ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ffd166, #ffb703);
+  z-index: 1;
+  opacity: 0.4;
+  filter: blur(10px);
+  transition: 0.3s;
+}
+
+/* HOVER */
+.button:hover {
+  transform: translateY(-6px) scale(1.08);
+  box-shadow: 
+    0 20px 40px rgba(0,0,0,0.3),
+    0 0 0 4px rgba(255,255,255,1);
+}
+
+.button:hover .icon {
+  transform: translateY(-2px);
+}
+
+.button:hover .ring {
+  opacity: 0.7;
+}
+
+/* CLICK */
+.button:active {
+  transform: scale(0.95);
+}
+
+/* MOBILE */
+@media (max-width: 500px) {
+  .button {
+    width: 50px;
+    height: 50px;
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .icon {
+    font-size: 20px;
+  }
+}
