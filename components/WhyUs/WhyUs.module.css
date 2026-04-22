@@ -1,0 +1,79 @@
+.section {
+  padding: 90px 0;
+  background: linear-gradient(180deg, #263c68 0%, #1a305e 100%);
+  color: white;
+}
+
+.container {
+  width: min(1200px, 92%);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.title {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.subtitle {
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 50px;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+/* CARD */
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 32px 22px;
+  border-radius: 20px;
+  transition: 0.25s;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+}
+
+/* HOVER */
+.card:hover {
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.3);
+}
+
+/* ICON */
+.icon {
+  font-size: 2.2rem;
+  margin-bottom: 16px;
+}
+
+/* TITLE */
+.card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #ffd166;
+}
+
+/* TEXT */
+.card p {
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.6;
+}
+
+/* Tablet */
+@media (max-width: 1000px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
