@@ -20,6 +20,12 @@ const tours = [
     price: 459,
     image: '/images/montenegro.jpg',
   },
+    {
+    title: 'Sommerreise nach Türkei',
+    location: 'Türkei',
+    price: 699,
+    image: '/images/turkey.jpg',
+  },
 ];
 
 export default function ToursPage() {
@@ -27,10 +33,10 @@ export default function ToursPage() {
     <main className={styles.page}>
       <div className="container">
         <div className={styles.header}>
-          <p className={styles.label}>Unsere Angebote</p>
-          <h1>Beliebte Reisen</h1>
+          <p className={styles.label}></p>
+          <h1>Sommer Highlights</h1>
           <p>
-            Finden Sie passende Reisen, Urlaubspakete und Tickets für Ihre nächste Fahrt.
+            Diese 4 Reisen sind im Sommer besonders beliebt bei unseren Kunden
           </p>
         </div>
 

@@ -28,7 +28,7 @@ export default function TourCard({
       <div className={styles.imageWrapper}>
         <img src={image} alt={title} className={styles.image} />
 
-        <span className={styles.badge}>Beliebt</span>
+        <span className={styles.badge}>Sommer</span>
       </div>
 
       <div className={styles.content}>

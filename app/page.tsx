@@ -39,7 +39,7 @@ export default function Home() {
             <p className={styles.label}>Bashkim Tours</p>
 
             <h1 className={styles.title}>
-              Reisen zwischen Deutschland und Nordmazedonien
+              Reisen zwischen Nordmazedonien und Deutschland
             </h1>
 
             <p className={styles.text}>

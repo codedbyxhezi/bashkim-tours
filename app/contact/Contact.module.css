@@ -1,189 +1,319 @@
 .page {
-  min-height: 100vh;
-  background:
-    radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 24%),
-    radial-gradient(circle at bottom right, rgba(255, 183, 3, 0.08), transparent 22%),
-    linear-gradient(180deg, #f8fbff 0%, #f2f6fc 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  padding: 110px 0 90px;
 }
 
-.container {
+.wrapper {
   width: min(1240px, 92%);
   margin: 0 auto;
 }
 
-.hero {
-  padding: 80px 0 30px;
+.topCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  padding: 36px;
+  border-radius: 32px;
+  background: #ffffff;
+  border: 1px solid #e5eaf2;
+  box-shadow: 0 18px 45px rgba(16, 40, 74, 0.08);
+  margin-bottom: 34px;
 }
 
-.heroContent {
-  max-width: 760px;
+.topContent {
+  max-width: 720px;
 }
 
-.badge {
+.kicker {
   display: inline-flex;
-  padding: 9px 15px;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
   border-radius: 999px;
-  background: rgba(37, 99, 235, 0.09);
-  border: 1px solid rgba(37, 99, 235, 0.14);
-  color: #2563eb;
-  font-weight: 800;
-  margin-bottom: 18px;
+  background: #e8f0ff;
+  color: #1d5bd1;
+  font-size: 0.92rem;
+  font-weight: 700;
+  margin-bottom: 16px;
 }
 
 .title {
-  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  margin: 0 0 14px;
+  font-size: clamp(2.2rem, 4vw, 3.6rem);
   line-height: 1.05;
-  color: #0f172a;
-  margin-bottom: 18px;
-  font-weight: 900;
+  color: #10284a;
 }
 
-.text {
-  max-width: 680px;
-  color: #5b6475;
-  line-height: 1.85;
-  font-size: 1.06rem;
-}
-
-.contactSection {
-  padding: 20px 0 90px;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 24px;
-  align-items: start;
-}
-
-.mainCard {
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(226, 232, 240, 0.9);
-  border-radius: 28px;
-  padding: 34px;
-  box-shadow:
-    0 20px 50px rgba(15, 23, 42, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
-}
-
-.cardTitle {
-  font-size: 2rem;
-  color: #0f172a;
-  margin-bottom: 12px;
-}
-
-.cardText {
-  color: #64748b;
+.description {
+  margin: 0;
+  max-width: 620px;
+  font-size: 1.05rem;
   line-height: 1.8;
-  margin-bottom: 26px;
+  color: #5b6b82;
 }
 
-.infoList {
+.topButton {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  padding: 0 22px;
+  border-radius: 999px;
+  background: #25d366;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 700;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.topButton:hover {
+  background: #1ebe5d;
+  transform: translateY(-2px);
+}
+
+.contactGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  margin-bottom: 28px;
 }
 
-.infoItem {
-  background: linear-gradient(180deg, #ffffff, #f8fbff);
-  border: 1px solid #e7edf5;
-  border-radius: 22px;
-  padding: 22px;
-  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.04);
+.infoCard {
+  padding: 28px;
+  border-radius: 28px;
+  background: #ffffff;
+  border: 1px solid #e5eaf2;
+  box-shadow: 0 14px 35px rgba(16, 40, 74, 0.06);
 }
 
-.infoLabel {
-  display: inline-block;
-  margin-bottom: 10px;
-  color: #2563eb;
-  font-size: 0.9rem;
-  font-weight: 800;
+.icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #eef4ff;
+  font-size: 1.5rem;
+  margin-bottom: 18px;
 }
 
-.infoItem p {
-  color: #0f172a;
+.infoCard h2 {
+  margin: 0 0 10px;
+  font-size: 1.3rem;
+  color: #10284a;
+}
+
+.infoCard p {
+  margin: 0 0 16px;
+  color: #5b6b82;
   line-height: 1.7;
+}
+
+.infoCard a {
+  color: #1d5bd1;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.bottomGrid {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 28px;
+}
+
+.whatsappBox {
+  padding: 32px;
+  border-radius: 30px;
+  background: linear-gradient(180deg, #0f2a52 0%, #1d5bd1 100%);
+  color: #ffffff;
+  box-shadow: 0 20px 45px rgba(16, 40, 74, 0.14);
+}
+
+.smallBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffd166;
+  font-size: 0.88rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.whatsappBox h2 {
+  margin: 0 0 14px;
+  font-size: 2rem;
+  line-height: 1.15;
+}
+
+.whatsappBox p {
+  margin: 0 0 20px;
+  color: #d6e2ff;
+  line-height: 1.8;
+}
+
+.features {
+  margin: 0 0 26px;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.features li {
+  position: relative;
+  padding-left: 24px;
+  color: #ffffff;
   font-weight: 600;
 }
 
-.sideColumn {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.sideCard {
-  background: linear-gradient(180deg, #0f172a, #172338);
-  color: white;
-  border-radius: 24px;
-  padding: 24px;
-  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.14);
-}
-
-.sideCard h3 {
-  font-size: 1.12rem;
-  margin-bottom: 10px;
+.features li::before {
+  content: "•";
+  position: absolute;
+  left: 8px;
+  top: 0;
   color: #ffd166;
 }
 
-.sideCard p {
-  color: rgba(255, 255, 255, 0.82);
+.whatsappButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  padding: 0 20px;
+  border-radius: 999px;
+  background: #25d366;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 700;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.whatsappButton:hover {
+  background: #1ebe5d;
+  transform: translateY(-2px);
+}
+
+.formCard {
+  padding: 32px;
+  border-radius: 30px;
+  background: #ffffff;
+  border: 1px solid #e5eaf2;
+  box-shadow: 0 14px 35px rgba(16, 40, 74, 0.08);
+}
+
+.formCard h2 {
+  margin: 0 0 10px;
+  font-size: 1.9rem;
+  color: #10284a;
+}
+
+.formCard p {
+  margin: 0 0 22px;
+  color: #5b6b82;
   line-height: 1.75;
 }
 
-@media (max-width: 960px) {
-  .grid {
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.inputRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.form input,
+.form textarea {
+  width: 100%;
+  border: 1px solid #dbe3ef;
+  border-radius: 16px;
+  background: #f8fbff;
+  padding: 14px 16px;
+  font: inherit;
+  color: #10284a;
+  outline: none;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.form input:focus,
+.form textarea:focus {
+  border-color: #1d5bd1;
+  background: #ffffff;
+}
+
+.form textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.form button {
+  min-height: 54px;
+  border: none;
+  border-radius: 16px;
+  background: #1d5bd1;
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.form button:hover {
+  background: #1747a6;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 980px) {
+  .page {
+    padding: 95px 0 75px;
+  }
+
+  .topCard {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .contactGrid {
     grid-template-columns: 1fr;
   }
 
-  .infoList {
-    grid-template-columns: 1fr 1fr;
+  .bottomGrid {
+    grid-template-columns: 1fr;
   }
 }
 
-@media (max-width: 700px) {
-  .hero {
-    padding: 58px 0 20px;
+@media (max-width: 560px) {
+  .page {
+    padding: 88px 0 68px;
   }
 
-  .title {
-    font-size: 2.3rem;
-  }
-
-  .mainCard {
+  .topCard,
+  .infoCard,
+  .whatsappBox,
+  .formCard {
     padding: 22px;
-    border-radius: 24px;
+    border-radius: 22px;
   }
 
-  .infoList {
+  .inputRow {
     grid-template-columns: 1fr;
   }
 
-  .infoItem {
-    border-radius: 18px;
-    padding: 18px;
-  }
-
-  .sideCard {
-    border-radius: 20px;
-    padding: 20px;
-  }
-}
-
-@media (max-width: 430px) {
-  .container {
-    width: min(100%, 100%);
-    padding: 0 12px;
-  }
-
   .title {
-    font-size: 2rem;
+    line-height: 1.1;
   }
 
-  .text,
-  .cardText,
-  .sideCard p,
-  .infoItem p {
-    font-size: 0.97rem;
+  .formCard h2,
+  .whatsappBox h2 {
+    font-size: 1.55rem;
   }
 }

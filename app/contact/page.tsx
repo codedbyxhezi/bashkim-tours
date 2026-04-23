@@ -1,80 +1,108 @@
-import styles from './Contact.module.css';
+import styles from "./Contact.module.css";
+
+const PHONE = "491234567890";
 
 export default function ContactPage() {
+  const message = "Hallo 👋 ich habe eine Frage zu Bashkim Tours.";
+  const whatsappUrl = `https://wa.me/${PHONE}?text=${encodeURIComponent(message)}`;
+
   return (
     <main className={styles.page}>
-      <section className={styles.hero}>
-        <div className={styles.container}>
-          <div className={styles.heroContent}>
-            <span className={styles.badge}>Kontakt</span>
-            <h1 className={styles.title}>Wir sind für Sie da</h1>
-            <p className={styles.text}>
-              Haben Sie Fragen zu Tickets, Fahrten oder Buchungen? Kontaktieren Sie
-              uns direkt. Wir helfen Ihnen schnell und persönlich weiter.
+      <section className={styles.wrapper}>
+        <div className={styles.topCard}>
+          <div className={styles.topContent}>
+            <span className={styles.kicker}>Kontakt</span>
+            <h1 className={styles.title}>Lass uns deine Reise planen</h1>
+            <p className={styles.description}>
+              Ob Buchung, Rückfrage oder individuelle Anfrage — wir helfen dir
+              schnell, persönlich und unkompliziert weiter.
             </p>
           </div>
+
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.topButton}
+          >
+            Direkt auf WhatsApp schreiben
+          </a>
         </div>
-      </section>
 
-      <section className={styles.contactSection}>
-        <div className={styles.container}>
-          <div className={styles.grid}>
-            <div className={styles.mainCard}>
-              <h2 className={styles.cardTitle}>Kontakt aufnehmen</h2>
-              <p className={styles.cardText}>
-                Für Anfragen zu Reisen zwischen Deutschland und Nordmazedonien
-                erreichen Sie uns per Telefon oder E-Mail.
-              </p>
+        <div className={styles.contactGrid}>
+          <article className={styles.infoCard}>
+            <div className={styles.icon}>📞</div>
+            <h2>Telefon</h2>
+            <p>Erreiche uns direkt für schnelle Fragen und kurzfristige Anliegen.</p>
+            <a href="tel:+491234567890">+49 123 4567890</a>
+          </article>
 
-              <div className={styles.infoList}>
-                <div className={styles.infoItem}>
-                  <span className={styles.infoLabel}>Telefon</span>
-                  <p>+49 123 456789</p>
-                </div>
+          <article className={styles.infoCard}>
+            <div className={styles.icon}>📧</div>
+            <h2>E-Mail</h2>
+            <p>Schreib uns jederzeit, wenn du Informationen oder Hilfe brauchst.</p>
+            <a href="mailto:info@bashkimtours.de">info@bashkimtours.de</a>
+          </article>
 
-                <div className={styles.infoItem}>
-                  <span className={styles.infoLabel}>E-Mail</span>
-                  <p>info@bashkimtours.com</p>
-                </div>
+          <article className={styles.infoCard}>
+            <div className={styles.icon}>💬</div>
+            <h2>WhatsApp</h2>
+            <p>Am schnellsten antworten wir dir direkt über WhatsApp.</p>
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Chat jetzt starten
+            </a>
+          </article>
+        </div>
 
-                <div className={styles.infoItem}>
-                  <span className={styles.infoLabel}>Strecken</span>
-                  <p>Deutschland ↔ Nordmazedonien</p>
-                </div>
+        <div className={styles.bottomGrid}>
+          <section className={styles.whatsappBox}>
+            <span className={styles.smallBadge}>Schnell & direkt</span>
+            <h2>WhatsApp ist der schnellste Weg</h2>
+            <p>
+              Für Buchungen, freie Plätze, Zwischenstopps oder allgemeine Fragen
+              bekommst du hier am schnellsten eine Antwort.
+            </p>
 
-                <div className={styles.infoItem}>
-                  <span className={styles.infoLabel}>Servicezeiten</span>
-                  <p>Montag bis Samstag, 09:00 – 18:00</p>
-                </div>
+            <ul className={styles.features}>
+              <li>Schnelle Rückmeldung</li>
+              <li>Persönlicher Kontakt</li>
+              <li>Ideal für Buchungsanfragen</li>
+            </ul>
+
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.whatsappButton}
+            >
+              Jetzt WhatsApp öffnen
+            </a>
+          </section>
+
+          <section className={styles.formCard}>
+            <h2>Oder schreib uns eine Nachricht</h2>
+            <p>
+              Nutze das Formular, wenn du uns lieber direkt über die Website
+              kontaktieren möchtest.
+            </p>
+
+            <form className={styles.form}>
+              <div className={styles.inputRow}>
+                <input type="text" placeholder="Dein Name" />
+                <input type="email" placeholder="Deine E-Mail" />
               </div>
-            </div>
 
-            <div className={styles.sideColumn}>
-              <div className={styles.sideCard}>
-                <h3>Warum Bashkim Tours?</h3>
-                <p>
-                  Zuverlässige Verbindungen, persönliche Beratung und schnelle Hilfe
-                  bei Ihrer Reiseplanung.
-                </p>
-              </div>
+              <input type="text" placeholder="Betreff" />
 
-              <div className={styles.sideCard}>
-                <h3>Schnelle Buchung</h3>
-                <p>
-                  Finden Sie passende Fahrten bequem online und senden Sie Ihre
-                  Anfrage in wenigen Schritten.
-                </p>
-              </div>
+              <textarea placeholder="Deine Nachricht"></textarea>
 
-              <div className={styles.sideCard}>
-                <h3>Persönlicher Support</h3>
-                <p>
-                  Wir unterstützen Sie bei Fragen zu Fahrten, Zeiten und verfügbaren
-                  Verbindungen.
-                </p>
-              </div>
-            </div>
-          </div>
+              <button type="submit">Nachricht senden</button>
+            </form>
+          </section>
         </div>
       </section>
     </main>

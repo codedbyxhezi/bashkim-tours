@@ -1,5 +1,6 @@
 .page {
   padding: 70px 0 90px;
+  background: linear-gradient(180deg, #ffffff 0%, #f5f9ff 100%);
 }
 
 .header {
