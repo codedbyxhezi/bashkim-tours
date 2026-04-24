@@ -94,7 +94,7 @@ Personen:
 Bitte bestätigen Sie mir, ob noch Plätze verfügbar sind.
 Vielen Dank!`;
 
-  return `https://wa.me/${PHONE}?text=${encodeURIComponent(message)}`;
+  return `https://wa.me/${491532789}?text=${encodeURIComponent(message)}`;
 }
 
 function createPreparedWhatsAppUrl({
