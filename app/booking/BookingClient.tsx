@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import styles from "./Booking.module.css";
 
-const PHONE = "491234567890"; // deine Nummer ohne +
+const PHONE = "491532789"; // deine Nummer ohne +
 
 const germanyRoutes = [
   ["Dortmund", "ZOB Steinstrasse", "04:30", "21:15"],
@@ -63,12 +63,12 @@ const routeOptions = [
   {
     label: "Deutschland → Nordmazedonien",
     cities: germanyRoutes.map((route) => route[0]),
-    days: ["Freitag"],
+    days: ["Mittwoch", "Samstag"],
   },
   {
     label: "Nordmazedonien → Deutschland",
     cities: germanyMacedoniaRoutes.map((route) => route[0]),
-    days: ["Freitag"],
+    days: ["Mittwoch", "Samstag"],
   },
   {
     label: "Schweiz → Nordmazedonien",
