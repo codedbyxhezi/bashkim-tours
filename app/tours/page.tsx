@@ -21,7 +21,7 @@ const tours = [
     image: '/images/montenegro.jpg',
   },
     {
-    title: 'Sommerreise nach Türkei',
+    title: 'Sommerreise in die Türkei',
     location: 'Türkei',
     price: 699,
     image: '/images/turkey.jpg',
