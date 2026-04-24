@@ -2,7 +2,7 @@
 
 import styles from "./Booking.module.css";
 
-const PHONE = "491234567890";
+const PHONE = "491234567890"; // deine Nummer ohne +
 
 const germanyRoutes = [
   ["Dortmund", "ZOB Steinstrasse", "04:30", "21:15"],
@@ -58,9 +58,19 @@ const swissMacedoniaRoutes = [
   ["Kumanovë", "Stacioni i Autobuseve", "14:00", "19:30", "14:00"],
 ];
 
-function createWhatsAppUrl(title: string) {
-  const message = `Hallo 👋 ich interessiere mich für "${title}". Können Sie mir mehr Informationen geben?`;
-  return `https://wa.me/${PHONE}?text=${encodeURIComponent(message)}`;
+  function createWhatsAppUrl(route: string) {
+    const message = `Hallo, ich möchte eine Reise buchen.
+
+    *Route:* ${route}
+
+    Abfahrtsort: _______
+    Ziel: _______
+    Datum: _______
+    Personen: _______
+
+    Vielen Dank!`;
+
+  return `https://wa.me/${491781532789}?text=${encodeURIComponent(message)}`;
 }
 
 export default function BookingClient() {
@@ -117,7 +127,7 @@ export default function BookingClient() {
                 </div>
 
                 <a
-                  href={createWhatsAppUrl("Nisjet nga Gjermania")}
+                  href={createWhatsAppUrl("Deutschland → Nordmazedonien")}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.button}
@@ -156,7 +166,7 @@ export default function BookingClient() {
                 </div>
 
                 <a
-                  href={createWhatsAppUrl("Nisjet nga Maqedonia Richtung Deutschland")}
+                  href={createWhatsAppUrl("Nordmazedonien → Deutschland")}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.button}
@@ -206,7 +216,7 @@ export default function BookingClient() {
                 </div>
 
                 <a
-                  href={createWhatsAppUrl("Nisjet nga Zvicra")}
+                  href={createWhatsAppUrl("Schweiz → Nordmazedonien")}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.button}
@@ -247,7 +257,7 @@ export default function BookingClient() {
                 </div>
 
                 <a
-                  href={createWhatsAppUrl("Nisjet nga Maqedonia Richtung Schweiz")}
+                  href={createWhatsAppUrl("Nordmazedonien → Schweiz")}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.button}
