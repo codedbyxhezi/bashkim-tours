@@ -4,8 +4,8 @@ import Link from 'next/link';
 
 const trips = [
   {
-    from: 'Skopje',
-    to: 'München',
+    from: 'Dortmund',
+    to: 'Ohër',
     price: '70€',
     duration: '18h',
     image: '/images/skopje.jpg',

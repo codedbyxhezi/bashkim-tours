@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import styles from "./Booking.module.css";
 
 const PHONE = "491234567890"; // deine Nummer ohne +
@@ -58,22 +59,95 @@ const swissMacedoniaRoutes = [
   ["Kumanovë", "Stacioni i Autobuseve", "14:00", "19:30", "14:00"],
 ];
 
-  function createWhatsAppUrl(route: string) {
-    const message = `Hallo, ich möchte eine Reise buchen.
+const routeOptions = [
+  {
+    label: "Deutschland → Nordmazedonien",
+    cities: germanyRoutes.map((route) => route[0]),
+    days: ["Freitag"],
+  },
+  {
+    label: "Nordmazedonien → Deutschland",
+    cities: germanyMacedoniaRoutes.map((route) => route[0]),
+    days: ["Freitag"],
+  },
+  {
+    label: "Schweiz → Nordmazedonien",
+    cities: swissRoutes.map((route) => route[0]),
+    days: ["Mittwoch", "Freitag", "Samstag"],
+  },
+  {
+    label: "Nordmazedonien → Schweiz",
+    cities: swissMacedoniaRoutes.map((route) => route[0]),
+    days: ["Mittwoch", "Freitag", "Samstag"],
+  },
+];
 
-    *Route:* ${route}
+function createQuickWhatsAppUrl(route: string) {
+  const message = `Hallo, ich möchte eine Reise buchen.
 
-    Abfahrtsort:
-    Ziel:
-    Datum:
-    Personen:
+Route: ${route}
+Abfahrtsort:
+Ziel:
+Datum:
+Personen:
 
-    Vielen Dank!`;
+Bitte bestätigen Sie mir, ob noch Plätze verfügbar sind.
+Vielen Dank!`;
 
-  return `https://wa.me/${491781532789}?text=${encodeURIComponent(message)}`;
+  return `https://wa.me/${PHONE}?text=${encodeURIComponent(message)}`;
+}
+
+function createPreparedWhatsAppUrl({
+  direction,
+  city,
+  day,
+  persons,
+}: {
+  direction: string;
+  city: string;
+  day: string;
+  persons: number;
+}) {
+  const message = `Hallo, ich möchte eine Reise buchen.
+
+Route: ${direction}
+Abfahrtsort: ${city}
+Reisetag: ${day}
+Personen: ${persons}
+
+Bitte bestätigen Sie mir, ob noch Plätze verfügbar sind.
+Falls keine Plätze verfügbar sind, informieren Sie mich bitte über eine Alternative.
+
+Vielen Dank!`;
+
+  return `https://wa.me/${PHONE}?text=${encodeURIComponent(message)}`;
 }
 
 export default function BookingClient() {
+  const [direction, setDirection] = useState(routeOptions[0].label);
+  const [city, setCity] = useState(routeOptions[0].cities[0]);
+  const [day, setDay] = useState(routeOptions[0].days[0]);
+  const [persons, setPersons] = useState(1);
+
+  const selectedRoute = useMemo(() => {
+    return routeOptions.find((route) => route.label === direction) ?? routeOptions[0];
+  }, [direction]);
+
+  const handleDirectionChange = (value: string) => {
+    const nextRoute = routeOptions.find((route) => route.label === value) ?? routeOptions[0];
+
+    setDirection(nextRoute.label);
+    setCity(nextRoute.cities[0]);
+    setDay(nextRoute.days[0]);
+  };
+
+  const preparedWhatsAppUrl = createPreparedWhatsAppUrl({
+    direction,
+    city,
+    day,
+    persons,
+  });
+
   return (
     <main className={styles.page}>
       <section className={styles.hero}>
@@ -81,10 +155,90 @@ export default function BookingClient() {
           <span className={styles.badge}>Fahrplan & Buchung</span>
           <h1 className={styles.title}>Verfügbare Routen</h1>
           <p className={styles.text}>
-            Hier findest du unsere aktuellen Abfahrtsorte, Zeiten und
-            Zwischenstopps. Für eine Buchung kannst du direkt per WhatsApp
-            anfragen.
+            Wähle deine Route aus und sende uns deine Anfrage direkt per WhatsApp.
           </p>
+        </div>
+      </section>
+
+      <section className={styles.requestSection}>
+        <div className={styles.container}>
+          <div className={styles.requestBox}>
+            <div className={styles.requestIntro}>
+              <span>Schnelle Anfrage</span>
+              <h2>Reise per WhatsApp vorbereiten</h2>
+              <p>
+                Wähle Abfahrtsort, Richtung, Reisetag und Personenanzahl. Die
+                WhatsApp-Nachricht wird automatisch vorbereitet.
+              </p>
+            </div>
+
+            <div className={styles.requestForm}>
+              <div className={styles.formField}>
+                <label htmlFor="direction">Richtung</label>
+                <select
+                  id="direction"
+                  value={direction}
+                  onChange={(event) => handleDirectionChange(event.target.value)}
+                >
+                  {routeOptions.map((route) => (
+                    <option key={route.label} value={route.label}>
+                      {route.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className={styles.formField}>
+                <label htmlFor="city">Abfahrtsort</label>
+                <select
+                  id="city"
+                  value={city}
+                  onChange={(event) => setCity(event.target.value)}
+                >
+                  {selectedRoute.cities.map((cityOption) => (
+                    <option key={cityOption} value={cityOption}>
+                      {cityOption}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className={styles.formField}>
+                <label htmlFor="day">Reisetag</label>
+                <select
+                  id="day"
+                  value={day}
+                  onChange={(event) => setDay(event.target.value)}
+                >
+                  {selectedRoute.days.map((dayOption) => (
+                    <option key={dayOption} value={dayOption}>
+                      {dayOption}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className={styles.formField}>
+                <label htmlFor="persons">Personen</label>
+                <input
+                  id="persons"
+                  type="number"
+                  min="1"
+                  value={persons}
+                  onChange={(event) => setPersons(Number(event.target.value))}
+                />
+              </div>
+            </div>
+
+            <a
+              href={preparedWhatsAppUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.requestButton}
+            >
+              Per WhatsApp anfragen
+            </a>
+          </div>
         </div>
       </section>
 
@@ -127,7 +281,7 @@ export default function BookingClient() {
                 </div>
 
                 <a
-                  href={createWhatsAppUrl("Deutschland → Nordmazedonien")}
+                  href={createQuickWhatsAppUrl("Deutschland → Nordmazedonien")}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.button}
@@ -166,7 +320,7 @@ export default function BookingClient() {
                 </div>
 
                 <a
-                  href={createWhatsAppUrl("Nordmazedonien → Deutschland")}
+                  href={createQuickWhatsAppUrl("Nordmazedonien → Deutschland")}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.button}
@@ -216,7 +370,7 @@ export default function BookingClient() {
                 </div>
 
                 <a
-                  href={createWhatsAppUrl("Schweiz → Nordmazedonien")}
+                  href={createQuickWhatsAppUrl("Schweiz → Nordmazedonien")}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.button}
@@ -257,7 +411,7 @@ export default function BookingClient() {
                 </div>
 
                 <a
-                  href={createWhatsAppUrl("Nordmazedonien → Schweiz")}
+                  href={createQuickWhatsAppUrl("Nordmazedonien → Schweiz")}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.button}
