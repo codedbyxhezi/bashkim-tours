@@ -63,10 +63,10 @@ const swissMacedoniaRoutes = [
 
     *Route:* ${route}
 
-    Abfahrtsort: _______
-    Ziel: _______
-    Datum: _______
-    Personen: _______
+    Abfahrtsort:
+    Ziel:
+    Datum:
+    Personen:
 
     Vielen Dank!`;
 
