@@ -11,6 +11,9 @@
   border: 1px solid #e5eaf2;
   border-radius: 30px;
   padding: 42px;
+    overflow: hidden;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 
   /* 🔥 neuer Shadow */
   box-shadow: 
@@ -51,6 +54,8 @@
   color: #5b6b82;
   line-height: 1.8;
   margin: 0;
+    overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .card strong {
