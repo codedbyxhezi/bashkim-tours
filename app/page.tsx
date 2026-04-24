@@ -9,6 +9,7 @@ import HowItWorks from '@/components/HowItWorks/HowItWorks';
 import CTASection from '@/components/CTASection/CTASection';
 import Testimonials from '@/components/Testimonials/Testimonials';
 import FAQ from '@/components/FAQ/FAQ';
+import Gallery from "@/components/Gallery/Gallery";
 
 export default function Home() {
   const router = useRouter();
@@ -110,6 +111,7 @@ export default function Home() {
       <PopularTrips />
       <WhyUs />
       <HowItWorks />
+      <Gallery />
       <CTASection />
       <Testimonials />
       <FAQ />
