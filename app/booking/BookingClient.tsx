@@ -120,7 +120,7 @@ Falls keine Plätze verfügbar sind, informieren Sie mich bitte über eine Alter
 
 Vielen Dank!`;
 
-  return `https://wa.me/${PHONE}?text=${encodeURIComponent(message)}`;
+  return `https://wa.me/${491532789}?text=${encodeURIComponent(message)}`;
 }
 
 export default function BookingClient() {
