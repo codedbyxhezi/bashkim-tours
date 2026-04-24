@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import styles from "./Booking.module.css";
 
-const PHONE = "491532789"; // deine Nummer ohne +
+const PHONE = "491781532789"; // deine Nummer ohne +
 
 const germanyRoutes = [
   ["Dortmund", "ZOB Steinstrasse", "04:30", "21:15"],
@@ -94,7 +94,7 @@ Personen:
 Bitte bestätigen Sie mir, ob noch Plätze verfügbar sind.
 Vielen Dank!`;
 
-  return `https://wa.me/${491532789}?text=${encodeURIComponent(message)}`;
+  return `https://wa.me/${491781532789}?text=${encodeURIComponent(message)}`;
 }
 
 function createPreparedWhatsAppUrl({
@@ -120,7 +120,7 @@ Falls keine Plätze verfügbar sind, informieren Sie mich bitte über eine Alter
 
 Vielen Dank!`;
 
-  return `https://wa.me/${491532789}?text=${encodeURIComponent(message)}`;
+  return `https://wa.me/${491781532789}?text=${encodeURIComponent(message)}`;
 }
 
 export default function BookingClient() {
