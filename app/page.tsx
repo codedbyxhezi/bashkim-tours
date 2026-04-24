@@ -40,12 +40,11 @@ export default function Home() {
             <p className={styles.label}>Bashkim Tours</p>
 
             <h1 className={styles.title}>
-              Reisen zwischen Nordmazedonien und Deutschland
+              Nordmazedonien • Deutschland • Schweiz
             </h1>
 
             <p className={styles.text}>
-              Buchen Sie Ihre Fahrt einfach online und finden Sie passende
-              Verbindungen für Ihre nächste Reise.
+              Sicher und komfortabel unterwegs - jede Woche.
             </p>
 
             <div className={styles.searchWrapper}>

@@ -12,7 +12,7 @@ export default function Footer() {
           <div className={styles.brandCard}>
             <span className={styles.badge}>Bashkim Tours</span>
             <h3 className={styles.brandTitle}>
-              Reisen zwischen Deutschland und Nordmazedonien
+              Reisen zwischen Nordmazedonien, Deutschland & der Schweiz
             </h3>
             <p className={styles.brandText}>
               Moderne Ticketbuchung, persönliche Beratung und zuverlässige
@@ -57,7 +57,7 @@ export default function Footer() {
               </p>
               <p>
                 <span>Strecken</span>
-                Deutschland ↔ Nordmazedonien
+                Nordmazedonien ↔ Deutschland ↔ Schweiz
               </p>
             </div>
           </div>
@@ -81,8 +81,8 @@ export default function Footer() {
           <p>© 2026 Bashkim Tours. Alle Rechte vorbehalten.</p>
 
           <div className={styles.bottomLinks}>
-            <Link href="/contact">Impressum</Link>
-            <Link href="/contact">Datenschutz</Link>
+            <Link href="/impressum">Impressum</Link>
+            <Link href="/datenschutz">Datenschutz</Link>
           </div>
         </div>
       </div>
