@@ -1,15 +1,19 @@
-import Link from "next/link";
-import styles from "./Home.module.css";
+'use client';
 
-import PopularTrips from "@/components/PopularTrips/PopularTrips";
-import WhyUs from "@/components/WhyUs/WhyUs";
-import HowItWorks from "@/components/HowItWorks/HowItWorks";
-import CTASection from "@/components/CTASection/CTASection";
-import Testimonials from "@/components/Testimonials/Testimonials";
-import FAQ from "@/components/FAQ/FAQ";
-import Gallery from "@/components/Gallery/Gallery";
+import styles from './Home.module.css';
+import Link from 'next/link';
+import PopularTrips from '@/components/PopularTrips/PopularTrips';
+import WhyUs from '@/components/WhyUs/WhyUs';
+import HowItWorks from '@/components/HowItWorks/HowItWorks';
+import CTASection from '@/components/CTASection/CTASection';
+import Testimonials from '@/components/Testimonials/Testimonials';
+import FAQ from '@/components/FAQ/FAQ';
+import Gallery from '@/components/Gallery/Gallery';
+import { useLanguage } from '@/components/LanguageProvider/LanguageProvider';
 
 export default function Home() {
+  const { t } = useLanguage();
+
   return (
     <>
       <main className={styles.heroSection}>
@@ -19,17 +23,13 @@ export default function Home() {
           <div className={styles.content}>
             <p className={styles.label}>Bashkim Tours</p>
 
-            <h1 className={styles.title}>
-              Nordmazedonien • Deutschland • Schweiz
-            </h1>
+            <h1 className={styles.title}>{t.hero.title}</h1>
 
-            <p className={styles.text}>
-              Sicher und komfortabel unterwegs - jede Woche.
-            </p>
+            <p className={styles.text}>{t.hero.subtitle}</p>
 
             <div className={styles.buttonWrapper}>
               <Link href="/booking" className={styles.searchButton}>
-                Tickets anzeigen
+                {t.hero.button}
               </Link>
             </div>
           </div>

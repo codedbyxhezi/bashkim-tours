@@ -1,77 +1,90 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import styles from './FAQ.module.css';
-
-const faqItems = [
-  {
-    question: 'Wie kann ich eine Reise buchen?',
-    answer:
-      'Du kannst deine Reise ganz einfach über unsere Buchungsseite oder direkt per WhatsApp anfragen. Wir melden uns schnellstmöglich bei dir zurück.',
-  },
-  {
-    question: 'Von wo aus starten die Reisen?',
-    answer:
-      'Unsere Reisen starten je nach Route von verschiedenen Orten in Deutschland. Die genauen Abfahrtsorte teilen wir dir bei der Buchung mit.',
-  },
-  {
-    question: 'Kann ich auch kurzfristig buchen?',
-    answer:
-      'Ja, kurzfristige Buchungen sind je nach Verfügbarkeit möglich. Am besten kontaktierst du uns direkt per WhatsApp, damit wir dir sofort weiterhelfen können.',
-  },
-  {
-    question: 'Wie bezahle ich meine Reise?',
-    answer:
-      'Die Zahlungsinformationen erhältst du im Rahmen der Buchung. Bei Fragen zu Preisen oder Zahlungsarten helfen wir dir gerne persönlich weiter.',
-  },
-  {
-    question: 'Was passiert, wenn sich meine Pläne ändern?',
-    answer:
-      'Melde dich in so einem Fall so früh wie möglich bei uns. Wir schauen gemeinsam nach der besten Lösung für deine Umbuchung oder Änderung.',
-  },
-];
+import { useState } from "react";
+import styles from "./FAQ.module.css";
+import { useLanguage } from "@/components/LanguageProvider/LanguageProvider";
 
 export default function FAQ() {
+  const { t, locale } = useLanguage();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-  const toggleItem = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
+  const faqs =
+    locale === "sq"
+      ? [
+          {
+            q: "Si mund të bëj rezervim?",
+            a: "Mund të rezervosh direkt përmes WhatsApp duke zgjedhur rrugën, vendin e nisjes, ditën dhe numrin e personave.",
+          },
+          {
+            q: "A ka ndalesa gjatë rrugës?",
+            a: "Po, gjatë udhëtimit ka ndalesa të planifikuara për pushim dhe nevoja të udhëtarëve.",
+          },
+          {
+            q: "A mund të pyes për vende të lira?",
+            a: "Po, përmes WhatsApp mund të na dërgosh kërkesë dhe ne të konfirmojmë nëse ka vende të lira.",
+          },
+          {
+            q: "A udhëtoni çdo javë?",
+            a: "Po, udhëtimet bëhen çdo javë në drejtimet kryesore mes Maqedonisë së Veriut, Gjermanisë dhe Zvicrës.",
+          },
+        ]
+      : [
+          {
+            q: "Wie kann ich buchen?",
+            a: "Du kannst direkt über WhatsApp buchen, indem du Route, Abfahrtsort, Reisetag und Personenanzahl auswählst.",
+          },
+          {
+            q: "Gibt es Zwischenstopps?",
+            a: "Ja, während der Fahrt gibt es geplante Zwischenstopps für Pausen und die Bedürfnisse der Reisenden.",
+          },
+          {
+            q: "Kann ich freie Plätze anfragen?",
+            a: "Ja, du kannst uns per WhatsApp eine Anfrage senden und wir bestätigen dir, ob noch Plätze verfügbar sind.",
+          },
+          {
+            q: "Fahrt ihr jede Woche?",
+            a: "Ja, wir fahren jede Woche auf den wichtigsten Strecken zwischen Nordmazedonien, Deutschland und der Schweiz.",
+          },
+        ];
 
   return (
     <section className={styles.section}>
       <div className={styles.container}>
         <div className={styles.heading}>
-          <span className={styles.badge}>FAQ</span>
-          <h2>Häufige Fragen</h2>
-          <p>
-            Hier findest du Antworten auf die wichtigsten Fragen rund um unsere
-            Reisen und Buchungen.
-          </p>
+          <span className={styles.badge}>{t.faq.badge}</span>
+          <h2>{t.faq.title}</h2>
+          <p>{t.faq.text}</p>
         </div>
 
         <div className={styles.list}>
-          {faqItems.map((item, index) => {
+          {faqs.map((item, index) => {
             const isOpen = openIndex === index;
 
             return (
-              <article key={item.question} className={styles.item}>
+              <div key={item.q} className={styles.item}>
                 <button
                   type="button"
                   className={styles.question}
-                  onClick={() => toggleItem(index)}
-                  aria-expanded={isOpen}
+                  onClick={() => setOpenIndex(isOpen ? null : index)}
                 >
-                  <span>{item.question}</span>
-                  <span className={`${styles.icon} ${isOpen ? styles.iconOpen : ''}`}>
+                  <span>{item.q}</span>
+                  <span
+                    className={`${styles.icon} ${
+                      isOpen ? styles.iconOpen : ""
+                    }`}
+                  >
                     +
                   </span>
                 </button>
 
-                <div className={`${styles.answerWrapper} ${isOpen ? styles.answerOpen : ''}`}>
-                  <p className={styles.answer}>{item.answer}</p>
+                <div
+                  className={`${styles.answerWrapper} ${
+                    isOpen ? styles.answerOpen : ""
+                  }`}
+                >
+                  <p className={styles.answer}>{item.a}</p>
                 </div>
-              </article>
+              </div>
             );
           })}
         </div>

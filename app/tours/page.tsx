@@ -1,57 +1,64 @@
-import TourCard from '@/components/TourCard/TourCard';
-import styles from './Tours.module.css';
+"use client";
 
-const tours = [
-  {
-    title: 'Sommerreise nach Albanien',
-    location: 'Albanien',
-    price: 499,
-    image: '/images/albania.jpg',
-  },
-  {
-    title: 'Städtereise Kosovo',
-    location: 'Kosovo',
-    price: 299,
-    image: '/images/kosovo.jpg',
-  },
-  {
-    title: 'Familienurlaub nach Montenegro',
-    location: 'Montenegro',
-    price: 459,
-    image: '/images/montenegro.jpg',
-  },
-    {
-    title: 'Sommerreise in die Türkei',
-    location: 'Türkei',
-    price: 699,
-    image: '/images/turkey.jpg',
-  },
-];
+import TourCard from "@/components/TourCard/TourCard";
+import { useLanguage } from "@/components/LanguageProvider/LanguageProvider";
+import styles from "./Tours.module.css";
 
 export default function ToursPage() {
+  const { t } = useLanguage();
+
+  const trips = [
+    {
+      title: t.trips.albaniaTitle,
+      location: t.trips.albaniaLocation,
+      price: 499,
+      image: "/images/albania.jpg",
+    },
+    {
+      title: t.trips.kosovoTitle,
+      location: t.trips.kosovoLocation,
+      price: 299,
+      image: "/images/kosovo.jpg",
+    },
+    {
+      title: t.trips.montenegroTitle,
+      location: t.trips.montenegroLocation,
+      price: 459,
+      image: "/images/montenegro.jpg",
+    },
+    {
+      title: t.trips.turkeyTitle,
+      location: t.trips.turkeyLocation,
+      price: 699,
+      image: "/images/turkey.jpg",
+    },
+  ];
+
   return (
     <main className={styles.page}>
-      <div className="container">
-        <div className={styles.header}>
-          <p className={styles.label}></p>
-          <h1>Sommer Highlights</h1>
-          <p>
-            Diese 4 Reisen sind im Sommer besonders beliebt bei unseren Kunden
-          </p>
+      <section className={styles.hero}>
+        <div className={styles.container}>
+          <span className={styles.badge}>{t.popularTrips.badge}</span>
+          <h1 className={styles.title}>{t.popularTrips.title}</h1>
+          <p className={styles.text}>{t.popularTrips.text}</p>
         </div>
+      </section>
 
-        <div className={styles.grid}>
-          {tours.map((tour) => (
-            <TourCard
-              key={tour.title}
-              title={tour.title}
-              location={tour.location}
-              price={tour.price}
-              image={tour.image}
-            />
-          ))}
+      <section className={styles.section}>
+        <div className={styles.container}>
+          <div className={styles.grid}>
+            {trips.map((trip) => (
+              <TourCard
+                key={trip.title}
+                title={trip.title}
+                location={trip.location}
+                price={trip.price}
+                image={trip.image}
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
     </main>
   );
 }

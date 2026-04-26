@@ -1,32 +1,26 @@
+"use client";
+
 import styles from "./Gallery.module.css";
+import { useLanguage } from "@/components/LanguageProvider/LanguageProvider";
 
 export default function Gallery() {
+  const { t } = useLanguage();
+
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-        
-        {/* TEXT */}
         <div className={styles.heading}>
-          <span className={styles.badge}>Galerie</span>
-          <h2 className={styles.title}>
-            Unterwegs mit Bashkim Tours
-          </h2>
-          <p className={styles.text}>
-            Einblicke in unsere Busse, Reisen und Erlebnisse unterwegs.
-          </p>
+          <span className={styles.badge}>{t.gallery.badge}</span>
+          <h2 className={styles.title}>{t.gallery.title}</h2>
+          <p className={styles.text}>{t.gallery.text}</p>
         </div>
 
-        {/* GRID */}
         <div className={styles.grid}>
-          
-          {/* BIG IMAGE */}
           <div className={styles.big}>
             <img src="/images/bus1.jpg" alt="Bus" />
           </div>
 
-          {/* SMALL IMAGES */}
           <div className={styles.small}>
-            
             <div className={styles.smallImage}>
               <img src="/images/bus2.jpg" alt="Bus innen" />
             </div>
@@ -42,7 +36,6 @@ export default function Gallery() {
             <div className={styles.smallImage}>
               <img src="/images/bus3.jpg" alt="Bus außen" />
             </div>
-
           </div>
         </div>
       </div>

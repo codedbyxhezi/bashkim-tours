@@ -2,8 +2,9 @@
 
 import { useMemo, useState } from "react";
 import styles from "./Booking.module.css";
+import { useLanguage } from "@/components/LanguageProvider/LanguageProvider";
 
-const PHONE = "491781532789"; // deine Nummer ohne +
+const PHONE = "491234567890"; // deine Nummer ohne +
 
 const germanyRoutes = [
   ["Dortmund", "ZOB Steinstrasse", "04:30", "21:15"],
@@ -63,12 +64,12 @@ const routeOptions = [
   {
     label: "Deutschland → Nordmazedonien",
     cities: germanyRoutes.map((route) => route[0]),
-    days: ["Mittwoch", "Samstag"],
+    days: ["Freitag"],
   },
   {
     label: "Nordmazedonien → Deutschland",
     cities: germanyMacedoniaRoutes.map((route) => route[0]),
-    days: ["Mittwoch", "Samstag"],
+    days: ["Freitag"],
   },
   {
     label: "Schweiz → Nordmazedonien",
@@ -94,7 +95,7 @@ Personen:
 Bitte bestätigen Sie mir, ob noch Plätze verfügbar sind.
 Vielen Dank!`;
 
-  return `https://wa.me/${491781532789}?text=${encodeURIComponent(message)}`;
+  return `https://wa.me/${PHONE}?text=${encodeURIComponent(message)}`;
 }
 
 function createPreparedWhatsAppUrl({
@@ -120,10 +121,12 @@ Falls keine Plätze verfügbar sind, informieren Sie mich bitte über eine Alter
 
 Vielen Dank!`;
 
-  return `https://wa.me/${491781532789}?text=${encodeURIComponent(message)}`;
+  return `https://wa.me/${PHONE}?text=${encodeURIComponent(message)}`;
 }
 
 export default function BookingClient() {
+  const { t } = useLanguage();
+
   const [direction, setDirection] = useState(routeOptions[0].label);
   const [city, setCity] = useState(routeOptions[0].cities[0]);
   const [day, setDay] = useState(routeOptions[0].days[0]);
@@ -134,7 +137,8 @@ export default function BookingClient() {
   }, [direction]);
 
   const handleDirectionChange = (value: string) => {
-    const nextRoute = routeOptions.find((route) => route.label === value) ?? routeOptions[0];
+    const nextRoute =
+      routeOptions.find((route) => route.label === value) ?? routeOptions[0];
 
     setDirection(nextRoute.label);
     setCity(nextRoute.cities[0]);
@@ -152,11 +156,9 @@ export default function BookingClient() {
     <main className={styles.page}>
       <section className={styles.hero}>
         <div className={styles.container}>
-          <span className={styles.badge}>Fahrplan & Buchung</span>
-          <h1 className={styles.title}>Verfügbare Routen</h1>
-          <p className={styles.text}>
-            Wähle deine Route aus und sende uns deine Anfrage direkt per WhatsApp.
-          </p>
+          <span className={styles.badge}>{t.booking.badge}</span>
+          <h1 className={styles.title}>{t.booking.title}</h1>
+          <p className={styles.text}>{t.booking.subtitle}</p>
         </div>
       </section>
 
@@ -164,17 +166,14 @@ export default function BookingClient() {
         <div className={styles.container}>
           <div className={styles.requestBox}>
             <div className={styles.requestIntro}>
-              <span>Schnelle Anfrage</span>
-              <h2>Reise per WhatsApp vorbereiten</h2>
-              <p>
-                Wähle Abfahrtsort, Richtung, Reisetag und Personenanzahl. Die
-                WhatsApp-Nachricht wird automatisch vorbereitet.
-              </p>
+              <span>{t.booking.quickRequest}</span>
+              <h2>{t.booking.requestTitle}</h2>
+              <p>{t.booking.requestText}</p>
             </div>
 
             <div className={styles.requestForm}>
               <div className={styles.formField}>
-                <label htmlFor="direction">Richtung</label>
+                <label htmlFor="direction">{t.booking.direction}</label>
                 <select
                   id="direction"
                   value={direction}
@@ -189,7 +188,7 @@ export default function BookingClient() {
               </div>
 
               <div className={styles.formField}>
-                <label htmlFor="city">Abfahrtsort</label>
+                <label htmlFor="city">{t.booking.city}</label>
                 <select
                   id="city"
                   value={city}
@@ -204,7 +203,7 @@ export default function BookingClient() {
               </div>
 
               <div className={styles.formField}>
-                <label htmlFor="day">Reisetag</label>
+                <label htmlFor="day">{t.booking.day}</label>
                 <select
                   id="day"
                   value={day}
@@ -219,7 +218,7 @@ export default function BookingClient() {
               </div>
 
               <div className={styles.formField}>
-                <label htmlFor="persons">Personen</label>
+                <label htmlFor="persons">{t.booking.persons}</label>
                 <input
                   id="persons"
                   type="number"
@@ -236,7 +235,7 @@ export default function BookingClient() {
               rel="noopener noreferrer"
               className={styles.requestButton}
             >
-              Per WhatsApp anfragen
+              {t.booking.whatsappButton}
             </a>
           </div>
         </div>
@@ -246,25 +245,25 @@ export default function BookingClient() {
         <div className={styles.container}>
           <div className={styles.routeGroup}>
             <div className={styles.groupHeading}>
-              <span>Deutschland</span>
-              <h2>Deutschland ↔ Nordmazedonien</h2>
+              <span>{t.booking.germany}</span>
+              <h2>{t.booking.germanyTitle}</h2>
             </div>
 
             <div className={styles.scheduleGrid}>
               <article className={styles.scheduleCard}>
                 <div className={styles.cardHeader}>
                   <h3>Nisjet nga Gjermania</h3>
-                  <p>Abfahrten aus Deutschland</p>
+                  <p>{t.booking.fromGermany}</p>
                 </div>
 
                 <div className={styles.tableWrapper}>
                   <table className={styles.table}>
                     <thead>
                       <tr>
-                        <th>Qyteti</th>
-                        <th>Vendndodhja</th>
-                        <th>Nisja</th>
-                        <th>Arritja</th>
+                        <th>{t.booking.tableCity}</th>
+                        <th>{t.booking.tableLocation}</th>
+                        <th>{t.booking.departure}</th>
+                        <th>{t.booking.arrival}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -286,24 +285,24 @@ export default function BookingClient() {
                   rel="noopener noreferrer"
                   className={styles.button}
                 >
-                  Route anfragen
+                  {t.booking.routeRequest}
                 </a>
               </article>
 
               <article className={styles.scheduleCard}>
                 <div className={styles.cardHeader}>
                   <h3>Nisjet nga Maqedonia</h3>
-                  <p>Richtung Deutschland</p>
+                  <p>{t.booking.toGermany}</p>
                 </div>
 
                 <div className={styles.tableWrapper}>
                   <table className={styles.table}>
                     <thead>
                       <tr>
-                        <th>Qyteti</th>
-                        <th>Vendndodhja</th>
-                        <th>Nisja</th>
-                        <th>Arritja</th>
+                        <th>{t.booking.tableCity}</th>
+                        <th>{t.booking.tableLocation}</th>
+                        <th>{t.booking.departure}</th>
+                        <th>{t.booking.arrival}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -325,7 +324,7 @@ export default function BookingClient() {
                   rel="noopener noreferrer"
                   className={styles.button}
                 >
-                  Route anfragen
+                  {t.booking.routeRequest}
                 </a>
               </article>
             </div>
@@ -333,26 +332,26 @@ export default function BookingClient() {
 
           <div className={styles.routeGroup}>
             <div className={styles.groupHeading}>
-              <span>Schweiz</span>
-              <h2>Schweiz ↔ Nordmazedonien</h2>
+              <span>{t.booking.switzerland}</span>
+              <h2>{t.booking.switzerlandTitle}</h2>
             </div>
 
             <div className={styles.scheduleGrid}>
               <article className={styles.scheduleCard}>
                 <div className={styles.cardHeader}>
                   <h3>Nisjet nga Zvicra</h3>
-                  <p>Abfahrten aus der Schweiz</p>
+                  <p>{t.booking.fromSwitzerland}</p>
                 </div>
 
                 <div className={styles.tableWrapper}>
                   <table className={`${styles.table} ${styles.swissTable}`}>
                     <thead>
                       <tr>
-                        <th>Qyteti</th>
-                        <th>Vendndodhja</th>
-                        <th>E mërkurë</th>
-                        <th>E premte</th>
-                        <th>E shtunë</th>
+                        <th>{t.booking.tableCity}</th>
+                        <th>{t.booking.tableLocation}</th>
+                        <th>{t.booking.wednesday}</th>
+                        <th>{t.booking.friday}</th>
+                        <th>{t.booking.saturday}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -375,25 +374,25 @@ export default function BookingClient() {
                   rel="noopener noreferrer"
                   className={styles.button}
                 >
-                  Route anfragen
+                  {t.booking.routeRequest}
                 </a>
               </article>
 
               <article className={styles.scheduleCard}>
                 <div className={styles.cardHeader}>
                   <h3>Nisjet nga Maqedonia</h3>
-                  <p>Richtung Schweiz</p>
+                  <p>{t.booking.toSwitzerland}</p>
                 </div>
 
                 <div className={styles.tableWrapper}>
                   <table className={`${styles.table} ${styles.swissTable}`}>
                     <thead>
                       <tr>
-                        <th>Qyteti</th>
-                        <th>Vendndodhja</th>
-                        <th>E mërkurë</th>
-                        <th>E premte</th>
-                        <th>E shtunë</th>
+                        <th>{t.booking.tableCity}</th>
+                        <th>{t.booking.tableLocation}</th>
+                        <th>{t.booking.wednesday}</th>
+                        <th>{t.booking.friday}</th>
+                        <th>{t.booking.saturday}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -416,7 +415,7 @@ export default function BookingClient() {
                   rel="noopener noreferrer"
                   className={styles.button}
                 >
-                  Route anfragen
+                  {t.booking.routeRequest}
                 </a>
               </article>
             </div>

@@ -1,93 +1,50 @@
-import styles from './PopularTrips.module.css';
-import Image from 'next/image';
-import Link from 'next/link';
+"use client";
 
-const trips = [
-  {
-    from: 'Dortmund',
-    to: 'Ohër',
-    price: '70€',
-    duration: '18h',
-    image: '/images/skopje.jpg',
-  },
-  {
-    from: 'Tetovo',
-    to: 'Stuttgart',
-    price: '75€',
-    duration: '17h',
-    image: '/images/tetovo.jpg',
-  },
-  {
-    from: 'Hamburg',
-    to: 'Skopje',
-    price: '80€',
-    duration: '20h',
-    image: '/images/hamburg.jpg',
-  },
-  {
-    from: 'Berlin',
-    to: 'Tetovo',
-    price: '78€',
-    duration: '19h',
-    image: '/images/berlin.jpg',
-  },
-];
+import TourCard from "@/components/TourCard/TourCard";
+import styles from "./PopularTrips.module.css";
+import { useLanguage } from "@/components/LanguageProvider/LanguageProvider";
 
 export default function PopularTrips() {
+  const { t } = useLanguage();
+
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-        <h2 className={styles.title}>Beliebte Fahrten</h2>
-        <p className={styles.subtitle}>
-          Entdecken Sie unsere beliebtesten Verbindungen
-        </p>
+        <div className={styles.heading}>
+          <span className={styles.badge}>{t.popularTrips.badge}</span>
+          <h2 className={styles.title}>{t.popularTrips.title}</h2>
+          <p className={styles.text}>{t.popularTrips.text}</p>
+        </div>
 
         <div className={styles.grid}>
-          {trips.map((trip, index) => (
-            <div key={index} className={styles.card}>
-              
-              {/* IMAGE */}
-              <div className={styles.imageWrapper}>
-                <Image
-                  src={trip.image}
-                  alt={`${trip.from} nach ${trip.to}`}
-                  fill
-                  className={styles.image}
-                />
-                <div className={styles.overlay}></div>
-              </div>
+          <TourCard
+            title={t.trips.albaniaTitle}
+            location={t.trips.albaniaLocation}
+            price={499}
+            image="/images/albania.jpg"
+          />
 
-              {/* CONTENT */}
-              <div className={styles.content}>
-                <div className={styles.route}>
-                  {trip.from} → {trip.to}
-                </div>
+          <TourCard
+            title={t.trips.kosovoTitle}
+            location={t.trips.kosovoLocation}
+            price={299}
+            image="/images/kosovo.jpg"
+          />
 
-                <div className={styles.info}>
-                  <span>⏱ {trip.duration}</span>
-                  <span className={styles.price}>{trip.price}</span>
-                </div>
+          <TourCard
+            title={t.trips.montenegroTitle}
+            location={t.trips.montenegroLocation}
+            price={459}
+            image="/images/montenegro.jpg"
+          />
 
-                <Link href="/booking" className={styles.button}>
-                  Fahrt ansehen
-                </Link>
-              </div>
-
-            </div>
-          ))}
+          <TourCard
+            title={t.trips.turkeyTitle}
+            location={t.trips.turkeyLocation}
+            price={399}
+            image="/images/turkey.jpg"
+          />
         </div>
-      </div>
-        <div className={styles.whatsappHint}>
-        <p>Noch Fragen? Schreib uns direkt auf WhatsApp.</p>
-
-        <a
-          href="https://wa.me/491234567890"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.whatsappButton}
-        >
-        Jetzt auf WhatsApp schreiben
-        </a>
       </div>
     </section>
   );

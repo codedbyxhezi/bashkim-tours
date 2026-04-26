@@ -1,27 +1,46 @@
-import Link from 'next/link';
-import styles from './CTASection.module.css';
+"use client";
+
+import Link from "next/link";
+import styles from "./CTASection.module.css";
+import { useLanguage } from "@/components/LanguageProvider/LanguageProvider";
 
 export default function CTASection() {
+  const { locale } = useLanguage();
+
+  const content =
+    locale === "sq"
+      ? {
+          badge: "Fillo tani",
+          title: "Siguro udhëtimin tënd të radhës tani",
+          text: "Gjej lidhjet e përshtatshme mes Gjermanisë dhe Maqedonisë së Veriut dhe dërgo kërkesën për rezervim në disa hapa.",
+          primary: "Kërko bileta",
+          secondary: "Na kontakto",
+        }
+      : {
+          badge: "Jetzt starten",
+          title: "Sichern Sie sich jetzt Ihre nächste Fahrt",
+          text: "Finden Sie passende Verbindungen zwischen Deutschland und Nordmazedonien und senden Sie Ihre Buchungsanfrage in wenigen Schritten.",
+          primary: "Jetzt Ticket suchen",
+          secondary: "Kontakt aufnehmen",
+        };
+
   return (
     <section className={styles.section}>
       <div className={styles.container}>
         <div className={styles.card}>
           <div className={styles.left}>
-            <span className={styles.badge}>Jetzt starten</span>
-            <h2 className={styles.title}>Sichern Sie sich jetzt Ihre nächste Fahrt</h2>
-            <p className={styles.text}>
-              Finden Sie passende Verbindungen zwischen Deutschland und
-              Nordmazedonien und senden Sie Ihre Buchungsanfrage in wenigen
-              Schritten.
-            </p>
+            <span className={styles.badge}>{content.badge}</span>
+            <h2 className={styles.title}>{content.title}</h2>
+            <p className={styles.text}>{content.text}</p>
           </div>
 
           <div className={styles.right}>
             <Link href="/booking" className={styles.primaryButton}>
-              Jetzt Ticket suchen
+              {content.primary}
             </Link>
+
             <Link href="/contact" className={styles.secondaryButton}>
-              Kontakt aufnehmen
+              {content.secondary}
             </Link>
           </div>
         </div>

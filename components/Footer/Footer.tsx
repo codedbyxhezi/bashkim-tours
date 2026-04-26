@@ -1,7 +1,12 @@
-import Link from 'next/link';
-import styles from './Footer.module.css';
+"use client";
+
+import Link from "next/link";
+import styles from "./Footer.module.css";
+import { useLanguage } from "@/components/LanguageProvider/LanguageProvider";
 
 export default function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer className={styles.footer}>
       <div className={styles.glowOne}></div>
@@ -11,13 +16,8 @@ export default function Footer() {
         <div className={styles.top}>
           <div className={styles.brandCard}>
             <span className={styles.badge}>Bashkim Tours</span>
-            <h3 className={styles.brandTitle}>
-              Reisen zwischen Nordmazedonien, Deutschland & der Schweiz
-            </h3>
-            <p className={styles.brandText}>
-              Moderne Ticketbuchung, persönliche Beratung und zuverlässige
-              Verbindungen für Ihre nächste Reise.
-            </p>
+            <h3 className={styles.brandTitle}>{t.footer.title}</h3>
+            <p className={styles.brandText}>{t.footer.text}</p>
 
             <div className={styles.infoPills}>
               <span>Busreisen</span>
@@ -27,62 +27,42 @@ export default function Footer() {
           </div>
 
           <div className={styles.column}>
-            <h4 className={styles.heading}>Navigation</h4>
+            <h4 className={styles.heading}>{t.footer.navigation}</h4>
             <ul className={styles.links}>
-              <li>
-                <Link href="/">Home</Link>
-              </li>
-              <li>
-                <Link href="/tours">Reisen</Link>
-              </li>
-              <li>
-                <Link href="/booking">Buchen</Link>
-              </li>
-              <li>
-                <Link href="/contact">Kontakt</Link>
-              </li>
+              <li><Link href="/">{t.navbar.home}</Link></li>
+              <li><Link href="/tours">{t.navbar.tours}</Link></li>
+              <li><Link href="/booking">{t.navbar.booking}</Link></li>
+              <li><Link href="/contact">{t.navbar.contact}</Link></li>
             </ul>
           </div>
 
           <div className={styles.column}>
-            <h4 className={styles.heading}>Kontakt</h4>
+            <h4 className={styles.heading}>{t.footer.contact}</h4>
             <div className={styles.contactList}>
-              <p>
-                <span>Telefon</span>
-                +49 123 456789
-              </p>
-              <p>
-                <span>E-Mail</span>
-                info@bashkimtours.com
-              </p>
-              <p>
-                <span>Strecken</span>
-                Nordmazedonien ↔ Deutschland ↔ Schweiz
-              </p>
+              <p><span>Telefon</span>+49 123 456789</p>
+              <p><span>E-Mail</span>info@bashkimtours.com</p>
+              <p><span>Strecken</span>Nordmazedonien ↔ Deutschland ↔ Schweiz</p>
             </div>
           </div>
 
           <div className={styles.column}>
-            <h4 className={styles.heading}>Service</h4>
+            <h4 className={styles.heading}>{t.footer.service}</h4>
             <div className={styles.serviceCard}>
-              <p className={styles.serviceTitle}>Schnelle Anfrage</p>
-              <p className={styles.serviceText}>
-                Finden Sie passende Fahrten und senden Sie uns Ihre Buchungsanfrage
-                einfach online.
-              </p>
+              <p className={styles.serviceTitle}>{t.footer.quickRequest}</p>
+              <p className={styles.serviceText}>{t.footer.serviceText}</p>
               <Link href="/booking" className={styles.cta}>
-                Jetzt buchen
+                {t.footer.bookNow}
               </Link>
             </div>
           </div>
         </div>
 
         <div className={styles.bottom}>
-          <p>© 2026 Bashkim Tours. Alle Rechte vorbehalten.</p>
+          <p>© 2026 Bashkim Tours. {t.footer.rights}</p>
 
           <div className={styles.bottomLinks}>
-            <Link href="/impressum">Impressum</Link>
-            <Link href="/datenschutz">Datenschutz</Link>
+            <Link href="/impressum">{t.footer.impressum}</Link>
+            <Link href="/datenschutz">{t.footer.privacy}</Link>
           </div>
         </div>
       </div>
