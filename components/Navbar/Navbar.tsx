@@ -5,12 +5,19 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import styles from './Navbar.module.css';
+import { useLanguage } from '@/components/LanguageProvider/LanguageProvider';
 
 export default function Navbar() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const { locale, setLocale, t } = useLanguage();
 
   const closeMenu = () => setMenuOpen(false);
+
+  const changeLanguage = (lang: 'de' | 'sq') => {
+    setLocale(lang);
+    closeMenu();
+  };
 
   return (
     <header className={styles.header}>
@@ -46,7 +53,7 @@ export default function Navbar() {
                 onClick={closeMenu}
                 className={`${styles.link} ${pathname === '/' ? styles.active : ''}`}
               >
-                Home
+                {t.navbar.home}
               </Link>
             </li>
 
@@ -56,7 +63,7 @@ export default function Navbar() {
                 onClick={closeMenu}
                 className={`${styles.link} ${pathname === '/tours' ? styles.active : ''}`}
               >
-                Reisen
+                {t.navbar.tours}
               </Link>
             </li>
 
@@ -66,7 +73,7 @@ export default function Navbar() {
                 onClick={closeMenu}
                 className={`${styles.link} ${pathname === '/booking' ? styles.active : ''}`}
               >
-                Buchen
+                {t.navbar.booking}
               </Link>
             </li>
 
@@ -76,8 +83,34 @@ export default function Navbar() {
                 onClick={closeMenu}
                 className={`${styles.link} ${pathname === '/contact' ? styles.active : ''}`}
               >
-                Kontakt
+                {t.navbar.contact}
               </Link>
+            </li>
+
+            <li className={styles.languageItem}>
+              <div className={styles.languageSwitch}>
+                <button
+                  type="button"
+                  onClick={() => changeLanguage('de')}
+                  className={`${styles.languageButton} ${
+                    locale === 'de' ? styles.languageActive : ''
+                  }`}
+                  aria-label="Deutsch auswählen"
+                >
+                  <Image src="/images/flags/de.png" alt="Deutsch" width={20} height={15} />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => changeLanguage('sq')}
+                  className={`${styles.languageButton} ${
+                    locale === 'sq' ? styles.languageActive : ''
+                  }`}
+                  aria-label="Shqip auswählen"
+                >
+                  <Image src="/images/flags/al.png" alt="Shqip" width={20} height={15} />
+                </button>
+              </div>
             </li>
           </ul>
         </nav>
