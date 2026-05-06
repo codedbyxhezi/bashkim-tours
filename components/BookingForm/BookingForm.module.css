@@ -157,15 +157,17 @@
 }
 
 @media (max-width: 700px) {
-  .grid {
+  .box {
+    padding: 22px;
+    border-radius: 22px;
+  }
+
+  .grid,
+  .actions {
     grid-template-columns: 1fr;
   }
 
-  .field,
-  .field input,
-  .field select,
-  .field textarea {
-    width: 100%;
-    min-width: 0;
+  .tripSwitch {
+    grid-template-columns: 1fr;
   }
 }
