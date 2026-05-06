@@ -88,6 +88,7 @@
 
 .field {
   min-width: 0;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -185,4 +186,10 @@
   .field textarea {
     font-size: 16px;
   }
+}
+
+input[type="date"] {
+  appearance: none;
+  -webkit-appearance: none;
+  min-width: 0;
 }
