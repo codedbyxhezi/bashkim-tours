@@ -2,7 +2,7 @@
 
 import styles from './Home.module.css';
 import Link from 'next/link';
-import PopularTrips from '@/components/PopularTrips/PopularTrips';
+import TravelTeaser from "@/components/TravelTeaser/TravelTeaser";
 import WhyUs from '@/components/WhyUs/WhyUs';
 import HowItWorks from '@/components/HowItWorks/HowItWorks';
 import CTASection from '@/components/CTASection/CTASection';
@@ -36,7 +36,7 @@ export default function Home() {
         </div>
       </main>
 
-      <PopularTrips />
+      <TravelTeaser />
       <WhyUs />
       <HowItWorks />
       <Gallery />
