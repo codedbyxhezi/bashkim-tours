@@ -1,14 +1,15 @@
 const sq = {
   hero: {
-    title: "Maqedonia e Veriut • Gjermani • Zvicër",
-    subtitle: "Udhëtime të sigurta dhe komode çdo javë.",
-    button: "Kërko bileta",
+    title: "Rezervo biletën online",
+    subtitle: "Zgjidh rrugën dhe dërgo kërkesën për rezervim në pak hapa.",
+    button: "Rezervo tani",
   },
 
   navbar: {
     home: "Ballina",
     tours: "Udhëtime",
     booking: "Rezervo",
+    information: "Informacion",
     contact: "Kontakt",
   },
 

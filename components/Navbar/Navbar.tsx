@@ -79,6 +79,18 @@ export default function Navbar() {
 
             <li>
               <Link
+                href="/informacion"
+                onClick={closeMenu}
+                className={`${styles.link} ${
+                  pathname === "/informacion" ? styles.active : ""
+                }`}
+              >
+                {t.navbar.information}
+              </Link>
+            </li>
+
+            <li>
+              <Link
                 href="/contact"
                 onClick={closeMenu}
                 className={`${styles.link} ${pathname === '/contact' ? styles.active : ''}`}

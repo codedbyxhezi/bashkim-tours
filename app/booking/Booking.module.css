@@ -41,106 +41,6 @@
   line-height: 1.8;
 }
 
-.requestSection {
-  padding: 40px 0 20px;
-}
-
-.requestBox {
-  background: #ffffff;
-  border: 1px solid #e5eaf2;
-  border-radius: 30px;
-  padding: 32px;
-  box-shadow:
-    0 12px 35px rgba(16, 40, 74, 0.12),
-    0 34px 70px rgba(16, 40, 74, 0.08);
-}
-
-.requestIntro {
-  max-width: 760px;
-  margin-bottom: 26px;
-}
-
-.requestIntro span {
-  display: inline-flex;
-  padding: 7px 13px;
-  border-radius: 999px;
-  background: #e8f0ff;
-  color: #1d5bd1;
-  font-size: 0.85rem;
-  font-weight: 800;
-  margin-bottom: 12px;
-}
-
-.requestIntro h2 {
-  margin: 0 0 10px;
-  color: #10284a;
-  font-size: clamp(1.7rem, 3vw, 2.4rem);
-}
-
-.requestIntro p {
-  margin: 0;
-  color: #5b6b82;
-  line-height: 1.75;
-}
-
-.requestForm {
-  display: grid;
-  grid-template-columns: 1.3fr 1fr 0.8fr 0.6fr;
-  gap: 16px;
-  margin-bottom: 22px;
-}
-
-.formField {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.formField label {
-  color: #10284a;
-  font-weight: 800;
-  font-size: 0.9rem;
-}
-
-.formField select,
-.formField input {
-  width: 100%;
-  min-height: 52px;
-  border: 1px solid #dbe3ef;
-  border-radius: 16px;
-  background: #f8fbff;
-  color: #10284a;
-  padding: 0 14px;
-  font: inherit;
-  font-weight: 700;
-  outline: none;
-}
-
-.formField select:focus,
-.formField input:focus {
-  border-color: #1d5bd1;
-  background: #ffffff;
-}
-
-.requestButton {
-  min-height: 54px;
-  width: 100%;
-  border-radius: 16px;
-  background: #25d366;
-  color: #ffffff;
-  font-weight: 900;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.25s ease, background 0.25s ease;
-}
-
-.requestButton:hover {
-  background: #1ebe5d;
-  transform: translateY(-2px);
-}
-
 .scheduleSection {
   padding: 50px 0 90px;
 }
@@ -306,6 +206,20 @@
 .button:hover {
   background: #1ebe5d;
   transform: translateY(-2px);
+}
+
+.onlineBookingSection {
+  padding: 0 0 90px;
+}
+
+.bookingOptionsSection {
+  padding: 45px 0 35px;
+}
+
+@media (max-width: 950px) {
+  .bookingOptionsGrid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 1000px) {

@@ -1,135 +1,259 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import styles from './BookingForm.module.css';
+import { useState } from "react";
+import styles from "./BookingForm.module.css";
+import { useLanguage } from "@/components/LanguageProvider/LanguageProvider";
 
-type BookingData = {
+type TripType = "oneway" | "return";
+
+type FormData = {
   fullName: string;
-  email: string;
   phone: string;
-  destination: string;
+  from: string;
+  to: string;
+  departureDate: string;
+  returnDate: string;
   persons: number;
-  date: string;
+  note: string;
 };
 
+const PHONE = "491234567890"; // deine echte WhatsApp Nummer ohne +
+
 export default function BookingForm() {
-  const [form, setForm] = useState<BookingData>({
-    fullName: '',
-    email: '',
-    phone: '',
-    destination: '',
+  const { locale } = useLanguage();
+  const [tripType, setTripType] = useState<TripType>("oneway");
+
+  const [form, setForm] = useState<FormData>({
+    fullName: "",
+    phone: "",
+    from: "Deutschland",
+    to: "Nordmazedonien",
+    departureDate: "",
+    returnDate: "",
     persons: 1,
-    date: '',
+    note: "",
   });
 
+  const content =
+    locale === "sq"
+      ? {
+          badge: "Rezervim",
+          title: "Rezervo udhëtimin tënd",
+          text: "Plotëso të dhënat dhe zgjidh nëse dëshiron ta dërgosh si kërkesë online ose përmes WhatsApp.",
+          oneWay: "Një drejtim",
+          returnTrip: "Vajtje-ardhje",
+          fullName: "Emri i plotë",
+          phone: "Telefoni",
+          from: "Nga",
+          to: "Për në",
+          departureDate: "Data e nisjes",
+          returnDate: "Data e kthimit",
+          persons: "Persona",
+          note: "Shënim opsional",
+          onlineButton: "Dërgo kërkesën online",
+          whatsappButton: "Dërgo në WhatsApp",
+          alert: "Rezervimi online do të aktivizohet së shpejti.",
+        }
+      : {
+          badge: "Buchung",
+          title: "Buche deine Reise",
+          text: "Fülle deine Daten aus und wähle, ob du die Anfrage online oder direkt per WhatsApp senden möchtest.",
+          oneWay: "Einzelfahrt",
+          returnTrip: "Hin & Zurück",
+          fullName: "Vollständiger Name",
+          phone: "Telefon",
+          from: "Von",
+          to: "Nach",
+          departureDate: "Hinreise",
+          returnDate: "Rückreise",
+          persons: "Personen",
+          note: "Optionale Nachricht",
+          onlineButton: "Online-Anfrage senden",
+          whatsappButton: "Per WhatsApp senden",
+          alert: "Online-Buchung wird bald aktiviert.",
+        };
+
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
-    const { name, value } = e.target;
+    const { name, value } = event.target;
 
     setForm((prev) => ({
       ...prev,
-      [name]: name === 'persons' ? Number(value) : value,
+      [name]: name === "persons" ? Number(value) : value,
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log(form);
-    alert('Buchungsanfrage wurde gesendet');
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    alert(content.alert);
   };
 
+  const whatsappMessage =
+    locale === "sq"
+      ? `Përshëndetje, dua të bëj një rezervim.
+
+Lloji i udhëtimit: ${tripType === "return" ? "Vajtje-ardhje" : "Një drejtim"}
+Emri: ${form.fullName}
+Telefoni: ${form.phone}
+Nga: ${form.from}
+Për në: ${form.to}
+Data e nisjes: ${form.departureDate}
+${tripType === "return" ? `Data e kthimit: ${form.returnDate}` : ""}
+Persona: ${form.persons}
+Shënim: ${form.note || "-"}
+
+Ju lutem më konfirmoni nëse ka vende të lira.
+Faleminderit!`
+      : `Hallo, ich möchte eine Reise buchen.
+
+Reiseart: ${tripType === "return" ? "Hin & Zurück" : "Einzelfahrt"}
+Name: ${form.fullName}
+Telefon: ${form.phone}
+Von: ${form.from}
+Nach: ${form.to}
+Hinreise: ${form.departureDate}
+${tripType === "return" ? `Rückreise: ${form.returnDate}` : ""}
+Personen: ${form.persons}
+Nachricht: ${form.note || "-"}
+
+Bitte bestätigen Sie mir, ob noch Plätze verfügbar sind.
+Vielen Dank!`;
+
+  const whatsappUrl = `https://wa.me/${PHONE}?text=${encodeURIComponent(
+    whatsappMessage
+  )}`;
+
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
-      <div className={styles.row}>
-        <div className={styles.field}>
-          <label htmlFor="fullName">Name</label>
-          <input
-            id="fullName"
-            name="fullName"
-            type="text"
-            placeholder="Ihr vollständiger Name"
-            value={form.fullName}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className={styles.field}>
-          <label htmlFor="email">E-Mail</label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            placeholder="ihre@email.de"
-            value={form.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
+    <section className={styles.box}>
+      <div className={styles.header}>
+        <span>{content.badge}</span>
+        <h2>{content.title}</h2>
+        <p>{content.text}</p>
       </div>
 
-      <div className={styles.row}>
-        <div className={styles.field}>
-          <label htmlFor="phone">Telefon</label>
-          <input
-            id="phone"
-            name="phone"
-            type="text"
-            placeholder="+49 ..."
-            value={form.phone}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className={styles.field}>
-          <label htmlFor="destination">Reiseziel</label>
-          <select
-            id="destination"
-            name="destination"
-            value={form.destination}
-            onChange={handleChange}
-            required
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <div className={styles.tripSwitch}>
+          <button
+            type="button"
+            className={tripType === "oneway" ? styles.activeTrip : ""}
+            onClick={() => setTripType("oneway")}
           >
-            <option value="">Bitte wählen</option>
-            <option value="Albanien">Albanien</option>
-            <option value="Kosovo">Kosovo</option>
-            <option value="Montenegro">Montenegro</option>
-          </select>
-        </div>
-      </div>
+            {content.oneWay}
+          </button>
 
-      <div className={styles.row}>
+          <button
+            type="button"
+            className={tripType === "return" ? styles.activeTrip : ""}
+            onClick={() => setTripType("return")}
+          >
+            {content.returnTrip}
+          </button>
+        </div>
+
+        <div className={styles.grid}>
+          <div className={styles.field}>
+            <label>{content.fullName}</label>
+            <input
+              name="fullName"
+              type="text"
+              value={form.fullName}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className={styles.field}>
+            <label>{content.phone}</label>
+            <input
+              name="phone"
+              type="tel"
+              value={form.phone}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className={styles.field}>
+            <label>{content.from}</label>
+            <select name="from" value={form.from} onChange={handleChange}>
+              <option value="Deutschland">Deutschland</option>
+              <option value="Schweiz">Schweiz</option>
+              <option value="Nordmazedonien">Nordmazedonien</option>
+            </select>
+          </div>
+
+          <div className={styles.field}>
+            <label>{content.to}</label>
+            <select name="to" value={form.to} onChange={handleChange}>
+              <option value="Nordmazedonien">Nordmazedonien</option>
+              <option value="Deutschland">Deutschland</option>
+              <option value="Schweiz">Schweiz</option>
+            </select>
+          </div>
+
+          <div className={styles.field}>
+            <label>{content.departureDate}</label>
+            <input
+              name="departureDate"
+              type="date"
+              value={form.departureDate}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          {tripType === "return" && (
+            <div className={styles.field}>
+              <label>{content.returnDate}</label>
+              <input
+                name="returnDate"
+                type="date"
+                value={form.returnDate}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          )}
+
+          <div className={styles.field}>
+            <label>{content.persons}</label>
+            <input
+              name="persons"
+              type="number"
+              min="1"
+              value={form.persons}
+              onChange={handleChange}
+              required
+            />
+          </div>
+        </div>
+
         <div className={styles.field}>
-          <label htmlFor="persons">Personen</label>
-          <input
-            id="persons"
-            name="persons"
-            type="number"
-            min="1"
-            value={form.persons}
+          <label>{content.note}</label>
+          <textarea
+            name="note"
+            rows={4}
+            value={form.note}
             onChange={handleChange}
-            required
           />
         </div>
 
-        <div className={styles.field}>
-          <label htmlFor="date">Reisedatum</label>
-          <input
-            id="date"
-            name="date"
-            type="date"
-            value={form.date}
-            onChange={handleChange}
-            required
-          />
-        </div>
-      </div>
+        <div className={styles.actions}>
+          <button type="submit" className={styles.submit}>
+            {content.onlineButton}
+          </button>
 
-      <button type="submit" className={styles.submitBtn}>
-        Anfrage senden
-      </button>
-    </form>
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.whatsapp}
+          >
+            {content.whatsappButton}
+          </a>
+        </div>
+      </form>
+    </section>
   );
 }

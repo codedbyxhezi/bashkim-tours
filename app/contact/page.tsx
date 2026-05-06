@@ -6,97 +6,118 @@ import { useLanguage } from "@/components/LanguageProvider/LanguageProvider";
 const PHONE = "491234567890";
 
 export default function ContactPage() {
-  const { t, locale } = useLanguage();
+  const { locale } = useLanguage();
 
-  const message =
+  const content =
+    locale === "sq"
+      ? {
+          badge: "Kontakt",
+          title: "Na kontakto shpejt dhe lehtë",
+          text: "Për rezervime, vende të lira apo pyetje rreth udhëtimit — jemi këtu për të ndihmuar.",
+          whatsapp: "Shkruaj në WhatsApp",
+          phone: "Telefon",
+          email: "E-Mail",
+          address: "Adresa",
+          addressText: "Maqedonia e Veriut",
+          formTitle: "Dërgo një mesazh",
+          formText: "Plotëso formularin dhe ne do të përgjigjemi sa më shpejt.",
+          name: "Emri yt",
+          subject: "Subjekti",
+          message: "Mesazhi yt",
+          send: "Dërgo mesazhin",
+        }
+      : {
+          badge: "Kontakt",
+          title: "Kontaktiere uns schnell und einfach",
+          text: "Für Buchungen, freie Plätze oder Fragen rund um deine Reise — wir helfen dir gerne weiter.",
+          whatsapp: "Auf WhatsApp schreiben",
+          phone: "Telefon",
+          email: "E-Mail",
+          address: "Adresse",
+          addressText: "Nordmazedonien",
+          formTitle: "Nachricht senden",
+          formText: "Fülle das Formular aus und wir melden uns schnellstmöglich zurück.",
+          name: "Dein Name",
+          subject: "Betreff",
+          message: "Deine Nachricht",
+          send: "Nachricht senden",
+        };
+
+  const whatsappMessage =
     locale === "sq"
       ? "Përshëndetje, kam një pyetje për Bashkim Tours."
       : "Hallo, ich habe eine Frage zu Bashkim Tours.";
 
-  const whatsappUrl = `https://wa.me/${PHONE}?text=${encodeURIComponent(message)}`;
+  const whatsappUrl = `https://wa.me/${PHONE}?text=${encodeURIComponent(
+    whatsappMessage
+  )}`;
 
   return (
     <main className={styles.page}>
       <section className={styles.wrapper}>
-        <div className={styles.topCard}>
-          <div className={styles.topContent}>
-            <span className={styles.kicker}>{t.contact.kicker}</span>
-            <h1 className={styles.title}>{t.contact.title}</h1>
-            <p className={styles.description}>{t.contact.text}</p>
+        <div className={styles.heroCard}>
+          <div>
+            <span className={styles.badge}>{content.badge}</span>
+            <h1>{content.title}</h1>
+            <p>{content.text}</p>
           </div>
 
           <a
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className={styles.topButton}
+            className={styles.heroButton}
           >
-            {t.contact.whatsappButton}
+            {content.whatsapp}
           </a>
         </div>
 
-        <div className={styles.contactGrid}>
-          <article className={styles.infoCard}>
-            <div className={styles.icon}>📞</div>
-            <h2>{t.contact.phone}</h2>
-            <p>{t.contact.phoneText}</p>
-            <a href="tel:+491234567890">+49 123 4567890</a>
-          </article>
-
-          <article className={styles.infoCard}>
-            <div className={styles.icon}>📧</div>
-            <h2>{t.contact.email}</h2>
-            <p>{t.contact.emailText}</p>
-            <a href="mailto:info@bashkimtours.de">info@bashkimtours.de</a>
-          </article>
-
-          <article className={styles.infoCard}>
-            <div className={styles.icon}>💬</div>
-            <h2>{t.contact.whatsapp}</h2>
-            <p>{t.contact.whatsappText}</p>
-            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-              {t.contact.whatsappStart}
+        <div className={styles.mainGrid}>
+          <div className={styles.leftColumn}>
+            <a
+              href="tel:+491234567890"
+              className={styles.contactCard}
+            >
+              <span>{content.phone}</span>
+              <h2>+49 123 4567890</h2>
             </a>
-          </article>
-        </div>
-
-        <div className={styles.bottomGrid}>
-          <section className={styles.whatsappBox}>
-            <span className={styles.smallBadge}>{t.contact.fastBadge}</span>
-            <h2>{t.contact.fastTitle}</h2>
-            <p>{t.contact.fastText}</p>
-
-            <ul className={styles.features}>
-              {t.contact.features.map((feature) => (
-                <li key={feature}>{feature}</li>
-              ))}
-            </ul>
 
             <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.whatsappButton}
+              href="mailto:info@bashkimtours.de"
+              className={styles.contactCard}
             >
-              {t.contact.openWhatsapp}
+              <span>{content.email}</span>
+              <h2>info@bashkimtours.de</h2>
             </a>
-          </section>
 
-          <section className={styles.formCard}>
-            <h2>{t.contact.formTitle}</h2>
-            <p>{t.contact.formText}</p>
+            <div className={styles.contactCard}>
+              <span>{content.address}</span>
+
+              <h2>
+                Bashkim Tours <br />
+                Dervish Cara 4 <br />
+                1200 Tetove
+                <br />
+                {" "}
+                {locale === "sq"
+                  ? "Maqedonia e Veriut"
+                  : "Nordmazedonien"}
+              </h2>
+            </div>
+          </div>
+
+          <section className={styles.formPanel}>
+            <span className={styles.formBadge}>{content.badge}</span>
+            <h2>{content.formTitle}</h2>
+            <p>{content.formText}</p>
 
             <form className={styles.form}>
-              <div className={styles.inputRow}>
-                <input type="text" placeholder={t.contact.formName} />
-                <input type="email" placeholder={t.contact.formEmail} />
-              </div>
+              <input type="text" placeholder={content.name} />
+              <input type="email" placeholder="E-Mail" />
+              <input type="text" placeholder={content.subject} />
+              <textarea placeholder={content.message}></textarea>
 
-              <input type="text" placeholder={t.contact.formSubject} />
-
-              <textarea placeholder={t.contact.formMessage}></textarea>
-
-              <button type="submit">{t.contact.formButton}</button>
+              <button type="submit">{content.send}</button>
             </form>
           </section>
         </div>

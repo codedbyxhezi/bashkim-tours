@@ -1,14 +1,15 @@
 const de = {
   hero: {
-    title: "Nordmazedonien • Deutschland • Schweiz",
-    subtitle: "Sicher und komfortabel unterwegs - jede Woche.",
-    button: "Tickets suchen",
+    title: "Buche dein Ticket online",
+    subtitle: "Wähle deine Route und sende deine Buchungsanfrage in wenigen Schritten.",
+    button: "Jetzt buchen",
   },
 
   navbar: {
     home: "Home",
     tours: "Reisen",
     booking: "Buchen",
+    information: "Informationen",
     contact: "Kontakt",
   },
 

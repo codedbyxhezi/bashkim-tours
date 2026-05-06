@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import styles from "./Booking.module.css";
 import { useLanguage } from "@/components/LanguageProvider/LanguageProvider";
+import BookingForm from "@/components/BookingForm/BookingForm";
 
 const PHONE = "491234567890"; // deine Nummer ohne +
 
@@ -153,275 +154,166 @@ export default function BookingClient() {
   });
 
   return (
-    <main className={styles.page}>
-      <section className={styles.hero}>
-        <div className={styles.container}>
-          <span className={styles.badge}>{t.booking.badge}</span>
-          <h1 className={styles.title}>{t.booking.title}</h1>
-          <p className={styles.text}>{t.booking.subtitle}</p>
-        </div>
-      </section>
+  <main className={styles.page}>
+    <section className={styles.hero}>
+      <div className={styles.container}>
+        <span className={styles.badge}>{t.booking.badge}</span>
+        <h1 className={styles.title}>{t.booking.title}</h1>
+        <p className={styles.text}>{t.booking.subtitle}</p>
+      </div>
+    </section>
 
-      <section className={styles.requestSection}>
-        <div className={styles.container}>
-          <div className={styles.requestBox}>
-            <div className={styles.requestIntro}>
-              <span>{t.booking.quickRequest}</span>
-              <h2>{t.booking.requestTitle}</h2>
-              <p>{t.booking.requestText}</p>
-            </div>
+    <section className={styles.bookingOptionsSection}>
+      <div className={styles.container}>
+        <BookingForm />
+      </div>
+    </section>
 
-            <div className={styles.requestForm}>
-              <div className={styles.formField}>
-                <label htmlFor="direction">{t.booking.direction}</label>
-                <select
-                  id="direction"
-                  value={direction}
-                  onChange={(event) => handleDirectionChange(event.target.value)}
-                >
-                  {routeOptions.map((route) => (
-                    <option key={route.label} value={route.label}>
-                      {route.label}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div className={styles.formField}>
-                <label htmlFor="city">{t.booking.city}</label>
-                <select
-                  id="city"
-                  value={city}
-                  onChange={(event) => setCity(event.target.value)}
-                >
-                  {selectedRoute.cities.map((cityOption) => (
-                    <option key={cityOption} value={cityOption}>
-                      {cityOption}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div className={styles.formField}>
-                <label htmlFor="day">{t.booking.day}</label>
-                <select
-                  id="day"
-                  value={day}
-                  onChange={(event) => setDay(event.target.value)}
-                >
-                  {selectedRoute.days.map((dayOption) => (
-                    <option key={dayOption} value={dayOption}>
-                      {dayOption}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div className={styles.formField}>
-                <label htmlFor="persons">{t.booking.persons}</label>
-                <input
-                  id="persons"
-                  type="number"
-                  min="1"
-                  value={persons}
-                  onChange={(event) => setPersons(Number(event.target.value))}
-                />
-              </div>
-            </div>
-
-            <a
-              href={preparedWhatsAppUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.requestButton}
-            >
-              {t.booking.whatsappButton}
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section className={styles.scheduleSection}>
-        <div className={styles.container}>
-          <div className={styles.routeGroup}>
-            <div className={styles.groupHeading}>
-              <span>{t.booking.germany}</span>
-              <h2>{t.booking.germanyTitle}</h2>
-            </div>
-
-            <div className={styles.scheduleGrid}>
-              <article className={styles.scheduleCard}>
-                <div className={styles.cardHeader}>
-                  <h3>Nisjet nga Gjermania</h3>
-                  <p>{t.booking.fromGermany}</p>
-                </div>
-
-                <div className={styles.tableWrapper}>
-                  <table className={styles.table}>
-                    <thead>
-                      <tr>
-                        <th>{t.booking.tableCity}</th>
-                        <th>{t.booking.tableLocation}</th>
-                        <th>{t.booking.departure}</th>
-                        <th>{t.booking.arrival}</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {germanyRoutes.map((route) => (
-                        <tr key={route[0]}>
-                          <td>{route[0]}</td>
-                          <td>{route[1]}</td>
-                          <td>{route[2]}</td>
-                          <td>{route[3]}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-
-                <a
-                  href={createQuickWhatsAppUrl("Deutschland → Nordmazedonien")}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.button}
-                >
-                  {t.booking.routeRequest}
-                </a>
-              </article>
-
-              <article className={styles.scheduleCard}>
-                <div className={styles.cardHeader}>
-                  <h3>Nisjet nga Maqedonia</h3>
-                  <p>{t.booking.toGermany}</p>
-                </div>
-
-                <div className={styles.tableWrapper}>
-                  <table className={styles.table}>
-                    <thead>
-                      <tr>
-                        <th>{t.booking.tableCity}</th>
-                        <th>{t.booking.tableLocation}</th>
-                        <th>{t.booking.departure}</th>
-                        <th>{t.booking.arrival}</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {germanyMacedoniaRoutes.map((route) => (
-                        <tr key={route[0]}>
-                          <td>{route[0]}</td>
-                          <td>{route[1]}</td>
-                          <td>{route[2]}</td>
-                          <td>{route[3]}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-
-                <a
-                  href={createQuickWhatsAppUrl("Nordmazedonien → Deutschland")}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.button}
-                >
-                  {t.booking.routeRequest}
-                </a>
-              </article>
-            </div>
+    <section className={styles.scheduleSection}>
+      <div className={styles.container}>
+        <div className={styles.routeGroup}>
+          <div className={styles.groupHeading}>
+            <span>{t.booking.germany}</span>
+            <h2>{t.booking.germanyTitle}</h2>
           </div>
 
-          <div className={styles.routeGroup}>
-            <div className={styles.groupHeading}>
-              <span>{t.booking.switzerland}</span>
-              <h2>{t.booking.switzerlandTitle}</h2>
-            </div>
+          <div className={styles.scheduleGrid}>
+            <article className={styles.scheduleCard}>
+              <div className={styles.cardHeader}>
+                <h3>Nisjet nga Gjermania</h3>
+                <p>{t.booking.fromGermany}</p>
+              </div>
 
-            <div className={styles.scheduleGrid}>
-              <article className={styles.scheduleCard}>
-                <div className={styles.cardHeader}>
-                  <h3>Nisjet nga Zvicra</h3>
-                  <p>{t.booking.fromSwitzerland}</p>
-                </div>
-
-                <div className={styles.tableWrapper}>
-                  <table className={`${styles.table} ${styles.swissTable}`}>
-                    <thead>
-                      <tr>
-                        <th>{t.booking.tableCity}</th>
-                        <th>{t.booking.tableLocation}</th>
-                        <th>{t.booking.wednesday}</th>
-                        <th>{t.booking.friday}</th>
-                        <th>{t.booking.saturday}</th>
+              <div className={styles.tableWrapper}>
+                <table className={styles.table}>
+                  <thead>
+                    <tr>
+                      <th>{t.booking.tableCity}</th>
+                      <th>{t.booking.tableLocation}</th>
+                      <th>{t.booking.departure}</th>
+                      <th>{t.booking.arrival}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {germanyRoutes.map((route) => (
+                      <tr key={route[0]}>
+                        <td>{route[0]}</td>
+                        <td>{route[1]}</td>
+                        <td>{route[2]}</td>
+                        <td>{route[3]}</td>
                       </tr>
-                    </thead>
-                    <tbody>
-                      {swissRoutes.map((route) => (
-                        <tr key={route[0]}>
-                          <td>{route[0]}</td>
-                          <td>{route[1]}</td>
-                          <td>{route[2]}</td>
-                          <td>{route[3]}</td>
-                          <td>{route[4]}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </article>
 
-                <a
-                  href={createQuickWhatsAppUrl("Schweiz → Nordmazedonien")}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.button}
-                >
-                  {t.booking.routeRequest}
-                </a>
-              </article>
+            <article className={styles.scheduleCard}>
+              <div className={styles.cardHeader}>
+                <h3>Nisjet nga Maqedonia</h3>
+                <p>{t.booking.toGermany}</p>
+              </div>
 
-              <article className={styles.scheduleCard}>
-                <div className={styles.cardHeader}>
-                  <h3>Nisjet nga Maqedonia</h3>
-                  <p>{t.booking.toSwitzerland}</p>
-                </div>
-
-                <div className={styles.tableWrapper}>
-                  <table className={`${styles.table} ${styles.swissTable}`}>
-                    <thead>
-                      <tr>
-                        <th>{t.booking.tableCity}</th>
-                        <th>{t.booking.tableLocation}</th>
-                        <th>{t.booking.wednesday}</th>
-                        <th>{t.booking.friday}</th>
-                        <th>{t.booking.saturday}</th>
+              <div className={styles.tableWrapper}>
+                <table className={styles.table}>
+                  <thead>
+                    <tr>
+                      <th>{t.booking.tableCity}</th>
+                      <th>{t.booking.tableLocation}</th>
+                      <th>{t.booking.departure}</th>
+                      <th>{t.booking.arrival}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {germanyMacedoniaRoutes.map((route) => (
+                      <tr key={route[0]}>
+                        <td>{route[0]}</td>
+                        <td>{route[1]}</td>
+                        <td>{route[2]}</td>
+                        <td>{route[3]}</td>
                       </tr>
-                    </thead>
-                    <tbody>
-                      {swissMacedoniaRoutes.map((route) => (
-                        <tr key={route[0]}>
-                          <td>{route[0]}</td>
-                          <td>{route[1]}</td>
-                          <td>{route[2]}</td>
-                          <td>{route[3]}</td>
-                          <td>{route[4]}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-
-                <a
-                  href={createQuickWhatsAppUrl("Nordmazedonien → Schweiz")}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.button}
-                >
-                  {t.booking.routeRequest}
-                </a>
-              </article>
-            </div>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </article>
           </div>
         </div>
-      </section>
-    </main>
-  );
+
+        <div className={styles.routeGroup}>
+          <div className={styles.groupHeading}>
+            <span>{t.booking.switzerland}</span>
+            <h2>{t.booking.switzerlandTitle}</h2>
+          </div>
+
+          <div className={styles.scheduleGrid}>
+            <article className={styles.scheduleCard}>
+              <div className={styles.cardHeader}>
+                <h3>Nisjet nga Zvicra</h3>
+                <p>{t.booking.fromSwitzerland}</p>
+              </div>
+
+              <div className={styles.tableWrapper}>
+                <table className={`${styles.table} ${styles.swissTable}`}>
+                  <thead>
+                    <tr>
+                      <th>{t.booking.tableCity}</th>
+                      <th>{t.booking.tableLocation}</th>
+                      <th>{t.booking.wednesday}</th>
+                      <th>{t.booking.friday}</th>
+                      <th>{t.booking.saturday}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {swissRoutes.map((route) => (
+                      <tr key={route[0]}>
+                        <td>{route[0]}</td>
+                        <td>{route[1]}</td>
+                        <td>{route[2]}</td>
+                        <td>{route[3]}</td>
+                        <td>{route[4]}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </article>
+
+            <article className={styles.scheduleCard}>
+              <div className={styles.cardHeader}>
+                <h3>Nisjet nga Maqedonia</h3>
+                <p>{t.booking.toSwitzerland}</p>
+              </div>
+
+              <div className={styles.tableWrapper}>
+                <table className={`${styles.table} ${styles.swissTable}`}>
+                  <thead>
+                    <tr>
+                      <th>{t.booking.tableCity}</th>
+                      <th>{t.booking.tableLocation}</th>
+                      <th>{t.booking.wednesday}</th>
+                      <th>{t.booking.friday}</th>
+                      <th>{t.booking.saturday}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {swissMacedoniaRoutes.map((route) => (
+                      <tr key={route[0]}>
+                        <td>{route[0]}</td>
+                        <td>{route[1]}</td>
+                        <td>{route[2]}</td>
+                        <td>{route[3]}</td>
+                        <td>{route[4]}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+);
 }
