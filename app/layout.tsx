@@ -59,6 +59,10 @@ export const metadata = {
       "Udhëtime me autobus mes Maqedonisë së Veriut, Gjermanisë dhe Zvicrës.",
   },
 
+  icons: {
+    icon: "/icon.png",
+  },
+
   robots: {
     index: true,
     follow: true,
