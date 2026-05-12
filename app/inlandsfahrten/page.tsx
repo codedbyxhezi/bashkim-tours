@@ -15,7 +15,22 @@ export default function InlandsfahrtenPage() {
   const { locale } = useLanguage();
 
   const content =
-    locale === "sq"
+    locale === "mk"
+      ? {
+          badge: "Внатрешни линии",
+          title: "Дневни патувања низ Северна Македонија",
+          text: "Тука можете да најдете дел од нашите дневни линии. За точни термини и слободни места контактирајте нè директно.",
+          route: "Релација",
+          departure: "Поаѓање",
+          returnRide: "Враќање",
+          days: "Денови",
+          everyDay: "Секој ден",
+          reservation: "Резервација за внатрешни линии",
+          reservationText:
+            "За резервации и точни информации контактирајте нè директно преку WhatsApp.",
+          whatsapp: "Резервирај преку WhatsApp",
+        }
+      : locale === "sq"
       ? {
           badge: "Linja vendore",
           title: "Udhëtime të përditshme brenda Maqedonisë së Veriut",
@@ -24,6 +39,11 @@ export default function InlandsfahrtenPage() {
           departure: "Nisja",
           returnRide: "Kthimi",
           days: "Ditët",
+          everyDay: "Çdo ditë",
+          reservation: "Rezervim për udhëtimet vendore",
+          reservationText:
+            "Për rezervime dhe orare të sakta na kontaktoni direkt në WhatsApp.",
+          whatsapp: "Rezervo në WhatsApp",
         }
       : {
           badge: "Inlandsfahrten",
@@ -33,6 +53,11 @@ export default function InlandsfahrtenPage() {
           departure: "Abfahrt",
           returnRide: "Rückfahrt",
           days: "Tage",
+          everyDay: "Täglich",
+          reservation: "Reservierung für Inlandsfahrten",
+          reservationText:
+            "Für Reservierungen und genaue Uhrzeiten kontaktieren Sie uns direkt per WhatsApp.",
+          whatsapp: "Per WhatsApp reservieren",
         };
 
   return (
@@ -44,54 +69,46 @@ export default function InlandsfahrtenPage() {
           <p>{content.text}</p>
         </div>
 
-        <div className={styles.card}>
-          <div className={styles.tableWrapper}>
-            <table className={styles.table}>
-              <thead>
-                <tr>
-                  <th>{content.route}</th>
-                  <th>{content.departure}</th>
-                  <th>{content.returnRide}</th>
-                  <th>{content.days}</th>
-                </tr>
-              </thead>              
+        <div className={styles.routes}>
+          {routes.map((route) => (
+            <div key={route[0]} className={styles.routeCard}>
+              <div className={styles.routeTop}>
+                <h3>{route[0]}</h3>
+              </div>
 
-              <tbody>
-                {routes.map((route) => (
-                  <tr key={route[0]}>
-                    <td>{route[0]}</td>
-                    <td>{route[1]}</td>
-                    <td>{route[2]}</td>
-                    <td>{locale === "sq" ? "Çdo ditë" : route[3]}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            <div className={styles.contactBox}>
-  <h2>
-    {locale === "sq"
-      ? "Rezervim për udhëtimet vendore"
-      : "Reservierung für Inlandsfahrten"}
-  </h2>
+              <div className={styles.routeInfo}>
+                <div>
+                  <span>{content.departure}</span>
+                  <strong>{route[1]}</strong>
+                </div>
 
-  <p>
-    {locale === "sq"
-      ? "Për rezervime dhe orare të sakta na kontaktoni direkt në WhatsApp."
-      : "Für Reservierungen und genaue Uhrzeiten kontaktieren Sie uns direkt per WhatsApp."}
-  </p>
+                <div>
+                  <span>{content.returnRide}</span>
+                  <strong>{route[2]}</strong>
+                </div>
 
-  <a
-    href="https://wa.me/491234567890"
-    target="_blank"
-    rel="noopener noreferrer"
-    className={styles.whatsappButton}
-  >
-    {locale === "sq"
-      ? "Rezervo në WhatsApp"
-      : "Per WhatsApp reservieren"}
-  </a>
-</div>
-          </div>
+                <div>
+                  <span>{content.days}</span>
+                  <strong>{content.everyDay}</strong>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className={styles.contactBox}>
+          <h2>{content.reservation}</h2>
+
+          <p>{content.reservationText}</p>
+
+          <a
+            href="https://wa.me/491234567890"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.whatsappButton}
+          >
+            {content.whatsapp}
+          </a>
         </div>
       </section>
     </main>

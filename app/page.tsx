@@ -1,23 +1,35 @@
-'use client';
+"use client";
 
-import styles from './Home.module.css';
-import Link from 'next/link';
-import WhyUs from '@/components/WhyUs/WhyUs';
-import HowItWorks from '@/components/HowItWorks/HowItWorks';
-import CTASection from '@/components/CTASection/CTASection';
-import Testimonials from '@/components/Testimonials/Testimonials';
-import FAQ from '@/components/FAQ/FAQ';
-import Gallery from '@/components/Gallery/Gallery';
-import { useLanguage } from '@/components/LanguageProvider/LanguageProvider';
-import TravelOverview from '@/components/TravelOverview/TravelOverview';
+import { useEffect, useRef } from "react";
+import styles from "./Home.module.css";
+import Link from "next/link";
+
+import WhyUs from "@/components/WhyUs/WhyUs";
+import HowItWorks from "@/components/HowItWorks/HowItWorks";
+import CTASection from "@/components/CTASection/CTASection";
+import Testimonials from "@/components/Testimonials/Testimonials";
+import FAQ from "@/components/FAQ/FAQ";
+import Gallery from "@/components/Gallery/Gallery";
+import TravelOverview from "@/components/TravelOverview/TravelOverview";
+
+import { useLanguage } from "@/components/LanguageProvider/LanguageProvider";
 
 export default function Home() {
   const { t } = useLanguage();
+
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+  }, []);
 
   return (
     <>
       <main className={styles.heroSection}>
         <video
+          ref={videoRef}
           autoPlay
           muted
           loop
