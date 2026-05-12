@@ -46,11 +46,14 @@
 }
 
 .tableWrapper {
+  width: 100%;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .table {
   width: 100%;
+    min-width: 640px;
   border-collapse: collapse;
 }
 
@@ -121,7 +124,7 @@
   transform: translateY(-2px);
 }
 
-@media (max-width: 560px) {
+@media (max-width: 700px) {
   .page {
     padding: 90px 0 70px;
   }
@@ -131,7 +134,7 @@
   }
 
   .table {
-    min-width: 650px;
+    min-width: 560px;
   }
 
   .table th,
