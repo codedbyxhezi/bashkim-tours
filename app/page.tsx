@@ -22,6 +22,7 @@ export default function Home() {
           muted
           loop
           playsInline
+          preload="auto"
           className={styles.heroVideo}
         >
           <source src="/videos/hero-video.mp4" type="video/mp4" />
