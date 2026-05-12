@@ -2,7 +2,6 @@
 
 import styles from './Home.module.css';
 import Link from 'next/link';
-import TravelTeaser from "@/components/TravelTeaser/TravelTeaser";
 import WhyUs from '@/components/WhyUs/WhyUs';
 import HowItWorks from '@/components/HowItWorks/HowItWorks';
 import CTASection from '@/components/CTASection/CTASection';
@@ -10,6 +9,7 @@ import Testimonials from '@/components/Testimonials/Testimonials';
 import FAQ from '@/components/FAQ/FAQ';
 import Gallery from '@/components/Gallery/Gallery';
 import { useLanguage } from '@/components/LanguageProvider/LanguageProvider';
+import TravelOverview from '@/components/TravelOverview/TravelOverview';
 
 export default function Home() {
   const { t } = useLanguage();
@@ -17,6 +17,16 @@ export default function Home() {
   return (
     <>
       <main className={styles.heroSection}>
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className={styles.heroVideo}
+        >
+          <source src="/videos/hero-video.mp4" type="video/mp4" />
+        </video>
+
         <div className={styles.overlay}></div>
 
         <div className={styles.container}>
@@ -36,7 +46,7 @@ export default function Home() {
         </div>
       </main>
 
-      <TravelTeaser />
+      <TravelOverview />
       <WhyUs />
       <HowItWorks />
       <Gallery />

@@ -14,7 +14,7 @@ export default function Navbar() {
 
   const closeMenu = () => setMenuOpen(false);
 
-  const changeLanguage = (lang: 'de' | 'sq') => {
+  const changeLanguage = (lang: 'de' | 'sq' | 'mk') => {
     setLocale(lang);
     closeMenu();
   };
@@ -121,6 +121,17 @@ export default function Navbar() {
                   aria-label="Shqip auswählen"
                 >
                   <Image src="/images/flags/al.png" alt="Shqip" width={20} height={15} />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => changeLanguage('mk')}
+                  className={`${styles.languageButton} ${
+                    locale === 'mk' ? styles.languageActive : ''
+                  }`}
+                  aria-label="Македонски auswählen"
+                >
+                  <Image src="/images/flags/mk.png" alt="Македонски" width={20} height={15} />
                 </button>
               </div>
             </li>

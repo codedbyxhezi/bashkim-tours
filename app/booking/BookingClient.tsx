@@ -65,12 +65,12 @@ const routeOptions = [
   {
     label: "Deutschland → Nordmazedonien",
     cities: germanyRoutes.map((route) => route[0]),
-    days: ["Freitag"],
+    days: ["Mittwoch, Samstag"],
   },
   {
     label: "Nordmazedonien → Deutschland",
     cities: germanyMacedoniaRoutes.map((route) => route[0]),
-    days: ["Freitag"],
+    days: ["Mittwoch, Samstag"],
   },
   {
     label: "Schweiz → Nordmazedonien",
@@ -126,7 +126,7 @@ Vielen Dank!`;
 }
 
 export default function BookingClient() {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
 
   const [direction, setDirection] = useState(routeOptions[0].label);
   const [city, setCity] = useState(routeOptions[0].cities[0]);
@@ -153,7 +153,7 @@ export default function BookingClient() {
     persons,
   });
 
-  return (
+return (
   <main className={styles.page}>
     <section className={styles.hero}>
       <div className={styles.container}>
@@ -180,38 +180,16 @@ export default function BookingClient() {
           <div className={styles.scheduleGrid}>
             <article className={styles.scheduleCard}>
               <div className={styles.cardHeader}>
-                <h3>Nisjet nga Gjermania</h3>
-                <p>{t.booking.fromGermany}</p>
-              </div>
-
-              <div className={styles.tableWrapper}>
-                <table className={styles.table}>
-                  <thead>
-                    <tr>
-                      <th>{t.booking.tableCity}</th>
-                      <th>{t.booking.tableLocation}</th>
-                      <th>{t.booking.departure}</th>
-                      <th>{t.booking.arrival}</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {germanyRoutes.map((route) => (
-                      <tr key={route[0]}>
-                        <td>{route[0]}</td>
-                        <td>{route[1]}</td>
-                        <td>{route[2]}</td>
-                        <td>{route[3]}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </article>
-
-            <article className={styles.scheduleCard}>
-              <div className={styles.cardHeader}>
-                <h3>Nisjet nga Maqedonia</h3>
-                <p>{t.booking.toGermany}</p>
+                <h3>
+                  {locale === "sq"
+                    ? "Nisjet nga Maqedonia"
+                    : "Abfahrten aus Nordmazedonien"}
+                </h3>
+                <p>
+                {locale === "sq"
+                  ? "Drejt Gjermanisë"
+                  : "Richtung Deutschland"}
+              </p>
               </div>
 
               <div className={styles.tableWrapper}>
@@ -237,6 +215,45 @@ export default function BookingClient() {
                 </table>
               </div>
             </article>
+
+            <article className={styles.scheduleCard}>
+              <div className={styles.cardHeader}>
+                <h3>
+                  {locale === "sq"
+                    ? "Nisjet nga Gjermania"
+                    : "Abfahrten aus Deutschland"}
+                </h3>
+
+                <p>
+                  {locale === "sq"
+                    ? "Drejt Maqedonisë së Veriut"
+                    : "Richtung Nordmazedonien"}
+                </p>
+              </div>
+
+              <div className={styles.tableWrapper}>
+                <table className={styles.table}>
+                  <thead>
+                    <tr>
+                      <th>{t.booking.tableCity}</th>
+                      <th>{t.booking.tableLocation}</th>
+                      <th>{t.booking.departure}</th>
+                      <th>{t.booking.arrival}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {germanyRoutes.map((route) => (
+                      <tr key={route[0]}>
+                        <td>{route[0]}</td>
+                        <td>{route[1]}</td>
+                        <td>{route[2]}</td>
+                        <td>{route[3]}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </article>
           </div>
         </div>
 
@@ -249,40 +266,17 @@ export default function BookingClient() {
           <div className={styles.scheduleGrid}>
             <article className={styles.scheduleCard}>
               <div className={styles.cardHeader}>
-                <h3>Nisjet nga Zvicra</h3>
-                <p>{t.booking.fromSwitzerland}</p>
-              </div>
+                <h3>
+                  {locale === "sq"
+                    ? "Nisjet nga Maqedonia"
+                    : "Abfahrten aus Nordmazedonien"}
+                </h3>
 
-              <div className={styles.tableWrapper}>
-                <table className={`${styles.table} ${styles.swissTable}`}>
-                  <thead>
-                    <tr>
-                      <th>{t.booking.tableCity}</th>
-                      <th>{t.booking.tableLocation}</th>
-                      <th>{t.booking.wednesday}</th>
-                      <th>{t.booking.friday}</th>
-                      <th>{t.booking.saturday}</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {swissRoutes.map((route) => (
-                      <tr key={route[0]}>
-                        <td>{route[0]}</td>
-                        <td>{route[1]}</td>
-                        <td>{route[2]}</td>
-                        <td>{route[3]}</td>
-                        <td>{route[4]}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </article>
-
-            <article className={styles.scheduleCard}>
-              <div className={styles.cardHeader}>
-                <h3>Nisjet nga Maqedonia</h3>
-                <p>{t.booking.toSwitzerland}</p>
+                <p>
+                  {locale === "sq"
+                    ? "Drejt Zvicrës"
+                    : "Richtung Schweiz"}
+                </p>
               </div>
 
               <div className={styles.tableWrapper}>
@@ -298,6 +292,47 @@ export default function BookingClient() {
                   </thead>
                   <tbody>
                     {swissMacedoniaRoutes.map((route) => (
+                      <tr key={route[0]}>
+                        <td>{route[0]}</td>
+                        <td>{route[1]}</td>
+                        <td>{route[2]}</td>
+                        <td>{route[3]}</td>
+                        <td>{route[4]}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </article>
+
+            <article className={styles.scheduleCard}>
+              <div className={styles.cardHeader}>
+                <h3>
+                  {locale === "sq"
+                    ? "Nisjet nga Zvicra"
+                    : "Abfahrten aus der Schweiz"}
+                </h3>
+
+                <p>
+                  {locale === "sq"
+                    ? "Drejt Maqedonisë së Veriut"
+                    : "Richtung Nordmazedonien"}
+                </p>
+              </div>
+
+              <div className={styles.tableWrapper}>
+                <table className={`${styles.table} ${styles.swissTable}`}>
+                  <thead>
+                    <tr>
+                      <th>{t.booking.tableCity}</th>
+                      <th>{t.booking.tableLocation}</th>
+                      <th>{t.booking.wednesday}</th>
+                      <th>{t.booking.friday}</th>
+                      <th>{t.booking.saturday}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {swissRoutes.map((route) => (
                       <tr key={route[0]}>
                         <td>{route[0]}</td>
                         <td>{route[1]}</td>

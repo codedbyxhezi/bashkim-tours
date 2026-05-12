@@ -21,7 +21,7 @@ export default function LanguageProvider({
   useEffect(() => {
     const savedLocale = localStorage.getItem("locale") as Locale | null;
 
-    if (savedLocale === "de" || savedLocale === "sq") {
+    if (savedLocale === "de" || savedLocale === "sq" || savedLocale === "mk") {
       setLocaleState(savedLocale);
     }
   }, []);

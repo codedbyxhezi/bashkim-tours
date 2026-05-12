@@ -5,19 +5,62 @@ import styles from "./BookingForm.module.css";
 import { useLanguage } from "@/components/LanguageProvider/LanguageProvider";
 
 type TripType = "oneway" | "return";
+type Country = "" | "Deutschland" | "Schweiz" | "Nordmazedonien";
 
 type FormData = {
   fullName: string;
   phone: string;
-  from: string;
-  to: string;
+  from: Country;
+  fromCity: string;
+  to: Country;
+  toCity: string;
   departureDate: string;
   returnDate: string;
   persons: number;
   note: string;
 };
 
-const PHONE = "491234567890"; // deine echte WhatsApp Nummer ohne +
+const PHONE = "491234567890";
+
+const cities: Record<Exclude<Country, "">, string[]> = {
+  Deutschland: [
+    "Dortmund",
+    "Bochum",
+    "Essen",
+    "Duisburg",
+    "Düsseldorf",
+    "Leverkusen",
+    "Bonn",
+    "Frankfurt",
+    "Mannheim",
+    "Karlsruhe",
+    "Stuttgart",
+    "Ulm",
+    "München",
+  ],
+  Schweiz: [
+    "Zürich",
+    "Basel",
+    "Bern",
+    "Lausanne",
+    "Luzern",
+    "St. Gallen",
+    "Sion",
+    "Olten",
+    "Chur",
+    "Bellinzona",
+  ],
+  Nordmazedonien: [
+    "Tetovë",
+    "Shkup",
+    "Gostivar",
+    "Ohër",
+    "Strugë",
+    "Kërçovë",
+    "Kumanovë",
+    "Prilep",
+  ],
+};
 
 export default function BookingForm() {
   const { locale } = useLanguage();
@@ -26,8 +69,10 @@ export default function BookingForm() {
   const [form, setForm] = useState<FormData>({
     fullName: "",
     phone: "",
-    from: "Deutschland",
-    to: "Nordmazedonien",
+    from: "",
+    fromCity: "",
+    to: "",
+    toCity: "",
     departureDate: "",
     returnDate: "",
     persons: 1,
@@ -39,44 +84,68 @@ export default function BookingForm() {
       ? {
           badge: "Rezervim",
           title: "Rezervo udhëtimin tënd",
-          text: "Plotëso të dhënat dhe zgjidh nëse dëshiron ta dërgosh si kërkesë online ose përmes WhatsApp.",
+          text: "Plotëso të dhënat dhe dërgo kërkesën direkt në WhatsApp.",
           oneWay: "Një drejtim",
           returnTrip: "Vajtje-ardhje",
           fullName: "Emri i plotë",
           phone: "Telefoni",
-          from: "Nga",
-          to: "Për në",
+          from: "Nga shteti",
+          fromCity: "Qyteti i nisjes",
+          to: "Për në shtetin",
+          toCity: "Qyteti i mbërritjes",
+          chooseCountry: "Zgjidh shtetin",
+          chooseCity: "Zgjidh qytetin",
           departureDate: "Data e nisjes",
           returnDate: "Data e kthimit",
           persons: "Persona",
           note: "Shënim opsional",
-          onlineButton: "Dërgo kërkesën online",
           whatsappButton: "Dërgo në WhatsApp",
-          alert: "Rezervimi online do të aktivizohet së shpejti.",
         }
       : {
           badge: "Buchung",
           title: "Buche deine Reise",
-          text: "Fülle deine Daten aus und wähle, ob du die Anfrage online oder direkt per WhatsApp senden möchtest.",
+          text: "Fülle deine Daten aus und sende deine Anfrage direkt per WhatsApp.",
           oneWay: "Einzelfahrt",
           returnTrip: "Hin & Zurück",
           fullName: "Vollständiger Name",
           phone: "Telefon",
-          from: "Von",
-          to: "Nach",
+          from: "Von Land",
+          fromCity: "Abfahrtsstadt",
+          to: "Nach Land",
+          toCity: "Zielstadt",
+          chooseCountry: "Land wählen",
+          chooseCity: "Stadt wählen",
           departureDate: "Hinreise",
           returnDate: "Rückreise",
           persons: "Personen",
           note: "Optionale Nachricht",
-          onlineButton: "Online-Anfrage senden",
           whatsappButton: "Per WhatsApp senden",
-          alert: "Online-Buchung wird bald aktiviert.",
         };
 
   const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
   ) => {
     const { name, value } = event.target;
+
+    if (name === "from") {
+      setForm((prev) => ({
+        ...prev,
+        from: value as Country,
+        fromCity: "",
+      }));
+      return;
+    }
+
+    if (name === "to") {
+      setForm((prev) => ({
+        ...prev,
+        to: value as Country,
+        toCity: "",
+      }));
+      return;
+    }
 
     setForm((prev) => ({
       ...prev,
@@ -84,22 +153,27 @@ export default function BookingForm() {
     }));
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    alert(content.alert);
-  };
+  const fromLabel =
+    form.from === "Nordmazedonien" && locale === "sq"
+      ? "Maqedonia e Veriut"
+      : form.from;
+
+  const toLabel =
+    form.to === "Nordmazedonien" && locale === "sq"
+      ? "Maqedonia e Veriut"
+      : form.to;
 
   const whatsappMessage =
     locale === "sq"
       ? `Përshëndetje, dua të bëj një rezervim.
 
 Lloji i udhëtimit: ${tripType === "return" ? "Vajtje-ardhje" : "Një drejtim"}
-Emri: ${form.fullName}
-Telefoni: ${form.phone}
-Nga: ${form.from}
-Për në: ${form.to}
-Data e nisjes: ${form.departureDate}
-${tripType === "return" ? `Data e kthimit: ${form.returnDate}` : ""}
+Emri: ${form.fullName || "-"}
+Telefoni: ${form.phone || "-"}
+Nga: ${fromLabel || "-"} - ${form.fromCity || "-"}
+Për në: ${toLabel || "-"} - ${form.toCity || "-"}
+Data e nisjes: ${form.departureDate || "-"}
+${tripType === "return" ? `Data e kthimit: ${form.returnDate || "-"}` : ""}
 Persona: ${form.persons}
 Shënim: ${form.note || "-"}
 
@@ -108,12 +182,12 @@ Faleminderit!`
       : `Hallo, ich möchte eine Reise buchen.
 
 Reiseart: ${tripType === "return" ? "Hin & Zurück" : "Einzelfahrt"}
-Name: ${form.fullName}
-Telefon: ${form.phone}
-Von: ${form.from}
-Nach: ${form.to}
-Hinreise: ${form.departureDate}
-${tripType === "return" ? `Rückreise: ${form.returnDate}` : ""}
+Name: ${form.fullName || "-"}
+Telefon: ${form.phone || "-"}
+Von: ${fromLabel || "-"} - ${form.fromCity || "-"}
+Nach: ${toLabel || "-"} - ${form.toCity || "-"}
+Hinreise: ${form.departureDate || "-"}
+${tripType === "return" ? `Rückreise: ${form.returnDate || "-"}` : ""}
 Personen: ${form.persons}
 Nachricht: ${form.note || "-"}
 
@@ -132,7 +206,7 @@ Vielen Dank!`;
         <p>{content.text}</p>
       </div>
 
-      <form className={styles.form} onSubmit={handleSubmit}>
+      <form className={styles.form}>
         <div className={styles.tripSwitch}>
           <button
             type="button"
@@ -176,19 +250,63 @@ Vielen Dank!`;
 
           <div className={styles.field}>
             <label>{content.from}</label>
-            <select name="from" value={form.from} onChange={handleChange}>
+            <select name="from" value={form.from} onChange={handleChange} required>
+              <option value="">{content.chooseCountry}</option>
               <option value="Deutschland">Deutschland</option>
               <option value="Schweiz">Schweiz</option>
-              <option value="Nordmazedonien">Nordmazedonien</option>
+              <option value="Nordmazedonien">
+                {locale === "sq" ? "Maqedonia e Veriut" : "Nordmazedonien"}
+              </option>
+            </select>
+          </div>
+
+          <div className={styles.field}>
+            <label>{content.fromCity}</label>
+            <select
+              name="fromCity"
+              value={form.fromCity}
+              onChange={handleChange}
+              disabled={!form.from}
+              required
+            >
+              <option value="">{content.chooseCity}</option>
+              {form.from &&
+                cities[form.from].map((city) => (
+                  <option key={city} value={city}>
+                    {city}
+                  </option>
+                ))}
             </select>
           </div>
 
           <div className={styles.field}>
             <label>{content.to}</label>
-            <select name="to" value={form.to} onChange={handleChange}>
-              <option value="Nordmazedonien">Nordmazedonien</option>
+            <select name="to" value={form.to} onChange={handleChange} required>
+              <option value="">{content.chooseCountry}</option>
+              <option value="Nordmazedonien">
+                {locale === "sq" ? "Maqedonia e Veriut" : "Nordmazedonien"}
+              </option>
               <option value="Deutschland">Deutschland</option>
               <option value="Schweiz">Schweiz</option>
+            </select>
+          </div>
+
+          <div className={styles.field}>
+            <label>{content.toCity}</label>
+            <select
+              name="toCity"
+              value={form.toCity}
+              onChange={handleChange}
+              disabled={!form.to}
+              required
+            >
+              <option value="">{content.chooseCity}</option>
+              {form.to &&
+                cities[form.to].map((city) => (
+                  <option key={city} value={city}>
+                    {city}
+                  </option>
+                ))}
             </select>
           </div>
 
