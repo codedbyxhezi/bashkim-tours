@@ -15,6 +15,8 @@ export default function TravelTeaser() {
           text: "Shiko disa udhëtime të njohura dhe hap faqen e udhëtimeve për më shumë detaje.",
           button: "Shiko udhëtimet",
           items: [
+            { title: "Gjermani", image: "/images/germany.jpg" },
+            { title: "Zvicër", image: "/images/swiss.jpg" },
             { title: "Shqipëri", image: "/images/albania.jpg" },
             { title: "Mal i Zi", image: "/images/montenegro.jpg" },
             { title: "Turqi", image: "/images/turkey.jpg" },
@@ -26,6 +28,8 @@ export default function TravelTeaser() {
           text: "Sieh dir ein paar beliebte Reisen an und öffne die Reiseseite für mehr Details.",
           button: "Reisen ansehen",
           items: [
+            { title: "Deutschland", image: "/images/germany.jpg" },
+            { title: "Schweiz", image: "/images/swiss.jpg" },
             { title: "Albanien", image: "/images/albania.jpg" },
             { title: "Montenegro", image: "/images/montenegro.jpg" },
             { title: "Türkei", image: "/images/turkey.jpg" },

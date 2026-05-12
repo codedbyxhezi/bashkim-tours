@@ -11,6 +11,12 @@ export const metadata = {
     template: "%s | Bashkim Tours",
   },
 
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
+  manifest: "/site.webmanifest",
+
   description:
     "Bashkim Tours ofron udhëtime me autobus mes Maqedonisë së Veriut, Gjermanisë dhe Zvicrës. Busreisen zwischen Nordmazedonien, Deutschland und der Schweiz.",
 
@@ -57,10 +63,6 @@ export const metadata = {
     title: "Bashkim Tours | Udhëtime me autobus",
     description:
       "Udhëtime me autobus mes Maqedonisë së Veriut, Gjermanisë dhe Zvicrës.",
-  },
-
-  icons: {
-    icon: "/icon.png",
   },
 
   robots: {

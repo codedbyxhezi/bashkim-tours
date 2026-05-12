@@ -11,8 +11,8 @@
   align-items: center;
   justify-content: center;
 
-  background: #ffffff;
-  color: #1d5bd1;
+  background: linear-gradient(135deg, #1d5bd1 0%, #10284a 100%);
+  color: #e5eaf2;
 
   border: 1px solid #e5eaf2;
   cursor: pointer;

@@ -21,7 +21,7 @@ export default function ScrollToTop() {
       className={`${styles.button} ${visible ? styles.show : ''}`}
       onClick={scrollTop}
     >
-      <span className={styles.icon}>↑</span>
+      <span className={styles.icon}>⮝</span>
       <span className={styles.ring}></span>
     </button>
   );

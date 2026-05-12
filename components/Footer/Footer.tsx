@@ -32,6 +32,7 @@ export default function Footer() {
               <li><Link href="/">{t.navbar.home}</Link></li>
               <li><Link href="/tours">{t.navbar.tours}</Link></li>
               <li><Link href="/booking">{t.navbar.booking}</Link></li>
+              <li><Link href="/informacion">{t.navbar.information}</Link></li>
               <li><Link href="/contact">{t.navbar.contact}</Link></li>
             </ul>
           </div>
@@ -41,7 +42,7 @@ export default function Footer() {
             <div className={styles.contactList}>
               <p><span>Telefon</span>+49 123 456789</p>
               <p><span>E-Mail</span>info@bashkimtours.com</p>
-              <p><span>Strecken</span>Nordmazedonien ↔ Deutschland ↔ Schweiz</p>
+              <p><span>Adresse</span>Dervish Cara 4 <br /> 1200 Tetovë</p>
             </div>
           </div>
 

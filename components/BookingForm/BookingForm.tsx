@@ -240,10 +240,6 @@ Vielen Dank!`;
         </div>
 
         <div className={styles.actions}>
-          <button type="submit" className={styles.submit}>
-            {content.onlineButton}
-          </button>
-
           <a
             href={whatsappUrl}
             target="_blank"
