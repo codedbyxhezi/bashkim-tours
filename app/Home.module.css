@@ -158,13 +158,16 @@
     display: none;
   }
 
+  .desktopOnly {
+    display: none;
+  }
+
   .heroSection {
-    min-height: 72vh;
+    min-height: 78vh;
     background-image: url("/images/hero.png");
-    background-size: contain;
+    background-size: cover;
+    background-position: center center;
     background-repeat: no-repeat;
-    background-position: center top;
     background-color: #10284a;
-    background-attachment: scroll;
   }
 }
