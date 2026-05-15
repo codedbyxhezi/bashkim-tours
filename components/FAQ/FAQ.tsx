@@ -1,70 +1,84 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./FAQ.module.css";
 import { useLanguage } from "@/components/LanguageProvider/LanguageProvider";
 
 export default function FAQ() {
   const { t, locale } = useLanguage();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-const faqs =
-  locale === "mk"
-    ? [
-        {
-          q: "Како можам да резервирам?",
-          a: "Можете да резервирате директно преку WhatsApp со избор на рута, место на поаѓање, ден на патување и број на патници.",
-        },
-        {
-          q: "Дали има паузи за време на патувањето?",
-          a: "Да, за време на патувањето има планирани паузи за одмор и потребите на патниците.",
-        },
-        {
-          q: "Може ли да прашам за слободни места?",
-          a: "Да, можете да ни испратите барање преку WhatsApp и ние ќе ви потврдиме дали има слободни места.",
-        },
-        {
-          q: "Дали патувате секоја недела?",
-          a: "Да, патуваме секоја недела на главните линии помеѓу Северна Македонија, Германија и Швајцарија.",
-        },
-      ]
-    : locale === "sq"
-    ? [
-        {
-          q: "Si mund të bëj rezervim?",
-          a: "Mund të rezervosh direkt përmes WhatsApp duke zgjedhur rrugën, vendin e nisjes, ditën dhe numrin e personave.",
-        },
-        {
-          q: "A ka ndalesa gjatë rrugës?",
-          a: "Po, gjatë udhëtimit ka ndalesa të planifikuara për pushim dhe nevoja të udhëtarëve.",
-        },
-        {
-          q: "A mund të pyes për vende të lira?",
-          a: "Po, përmes WhatsApp mund të na dërgosh kërkesë dhe ne të konfirmojmë nëse ka vende të lira.",
-        },
-        {
-          q: "A udhëtoni çdo javë?",
-          a: "Po, udhëtimet bëhen çdo javë në drejtimet kryesore mes Maqedonisë së Veriut, Gjermanisë dhe Zvicrës.",
-        },
-      ]
-    : [
-        {
-          q: "Wie kann ich buchen?",
-          a: "Du kannst direkt über WhatsApp buchen, indem du Route, Abfahrtsort, Reisetag und Personenanzahl auswählst.",
-        },
-        {
-          q: "Gibt es Zwischenstopps?",
-          a: "Ja, während der Fahrt gibt es geplante Zwischenstopps für Pausen und die Bedürfnisse der Reisenden.",
-        },
-        {
-          q: "Kann ich freie Plätze anfragen?",
-          a: "Ja, du kannst uns per WhatsApp eine Anfrage senden und wir bestätigen dir, ob noch Plätze verfügbar sind.",
-        },
-        {
-          q: "Fahrt ihr jede Woche?",
-          a: "Ja, wir fahren jede Woche auf den wichtigsten Strecken zwischen Nordmazedonien, Deutschland und der Schweiz.",
-        },
-      ];
+  const faqs =
+    locale === "mk"
+      ? [
+          {
+            q: "Како можам да резервирам?",
+            a: "Можете да резервирате директно преку WhatsApp со избор на рута, место на поаѓање, ден на патување и број на патници.",
+          },
+          {
+            q: "Дали има паузи за време на патувањето?",
+            a: "Да, за време на патувањето има планирани паузи за одмор и потребите на патниците.",
+          },
+          {
+            q: "Може ли да прашам за слободни места?",
+            a: "Да, можете да ни испратите барање преку WhatsApp и ние ќе ви потврдиме дали има слободни места.",
+          },
+          {
+            q: "Дали патувате секоја недела?",
+            a: "Да, патуваме секоја недела на главните линии помеѓу Северна Македонија, Германија и Швајцарија.",
+          },
+        ]
+      : locale === "sq"
+      ? [
+          {
+            q: "Si mund të bëj rezervim?",
+            a: "Mund të rezervosh direkt përmes WhatsApp duke zgjedhur rrugën, vendin e nisjes, ditën dhe numrin e personave.",
+          },
+          {
+            q: "A ka ndalesa gjatë rrugës?",
+            a: "Po, gjatë udhëtimit ka ndalesa të planifikuara për pushim dhe nevoja të udhëtarëve.",
+          },
+          {
+            q: "A mund të pyes për vende të lira?",
+            a: "Po, përmes WhatsApp mund të na dërgosh kërkesë dhe ne të konfirmojmë nëse ka vende të lira.",
+          },
+          {
+            q: "A udhëtoni çdo javë?",
+            a: "Po, udhëtimet bëhen çdo javë në drejtimet kryesore mes Maqedonisë së Veriut, Gjermanisë dhe Zvicrës.",
+          },
+        ]
+      : [
+          {
+            q: "Wie kann ich buchen?",
+            a: "Du kannst direkt über WhatsApp buchen, indem du Route, Abfahrtsort, Reisetag und Personenanzahl auswählst.",
+          },
+          {
+            q: "Gibt es Zwischenstopps?",
+            a: "Ja, während der Fahrt gibt es geplante Zwischenstopps für Pausen und die Bedürfnisse der Reisenden.",
+          },
+          {
+            q: "Kann ich freie Plätze anfragen?",
+            a: "Ja, du kannst uns per WhatsApp eine Anfrage senden und wir bestätigen dir, ob noch Plätze verfügbar sind.",
+          },
+          {
+            q: "Fahrt ihr jede Woche?",
+            a: "Ja, wir fahren jede Woche auf den wichtigsten Strecken zwischen Nordmazedonien, Deutschland und der Schweiz.",
+          },
+        ];
+
+  const next = () => {
+    setActiveIndex((prev) => (prev + 1) % faqs.length);
+  };
+
+  const prev = () => {
+    setActiveIndex((prev) => (prev === 0 ? faqs.length - 1 : prev - 1));
+  };
+
+  useEffect(() => {
+    const interval = setInterval(next, 4500);
+    return () => clearInterval(interval);
+  }, [faqs.length]);
 
   return (
     <section className={styles.section}>
@@ -106,6 +120,32 @@ const faqs =
               </div>
             );
           })}
+        </div>
+
+        <div className={styles.mobileCarousel}>
+          <article className={styles.mobileCard}>
+            <h3>{faqs[activeIndex].q}</h3>
+            <p>{faqs[activeIndex].a}</p>
+          </article>
+
+          <div className={styles.controls}>
+            <button type="button" onClick={prev}>‹</button>
+
+            <div className={styles.dots}>
+              {faqs.map((item, index) => (
+                <button
+                  key={item.q}
+                  type="button"
+                  onClick={() => setActiveIndex(index)}
+                  className={`${styles.dot} ${
+                    activeIndex === index ? styles.activeDot : ""
+                  }`}
+                />
+              ))}
+            </div>
+
+            <button type="button" onClick={next}>›</button>
+          </div>
         </div>
       </div>
     </section>
