@@ -80,7 +80,28 @@ export default function BookingForm() {
   });
 
   const content =
-    locale === "sq"
+    locale === "mk"
+      ? {
+          badge: "Резервација",
+          title: "Резервирај го твоето патување",
+          text: "Пополнете ги податоците и испратете го барањето директно преку WhatsApp.",
+          oneWay: "Еден правец",
+          returnTrip: "Повратен билет",
+          fullName: "Име и презиме",
+          phone: "Телефон",
+          from: "Од држава",
+          fromCity: "Град на поаѓање",
+          to: "До држава",
+          toCity: "Град на пристигнување",
+          chooseCountry: "Избери држава",
+          chooseCity: "Избери град",
+          departureDate: "Датум на поаѓање",
+          returnDate: "Датум на враќање",
+          persons: "Патници",
+          note: "Опционална порака",
+          whatsappButton: "Испрати преку WhatsApp",
+        }
+      : locale === "sq"
       ? {
           badge: "Rezervim",
           title: "Rezervo udhëtimin tënd",
@@ -122,6 +143,28 @@ export default function BookingForm() {
           whatsappButton: "Per WhatsApp senden",
         };
 
+  const getCountryLabel = (country: Country) => {
+    if (country === "Nordmazedonien") {
+      if (locale === "mk") return "Северна Македонија";
+      if (locale === "sq") return "Maqedonia e Veriut";
+      return "Nordmazedonien";
+    }
+
+    if (country === "Deutschland") {
+      if (locale === "mk") return "Германија";
+      if (locale === "sq") return "Gjermani";
+      return "Deutschland";
+    }
+
+    if (country === "Schweiz") {
+      if (locale === "mk") return "Швајцарија";
+      if (locale === "sq") return "Zvicër";
+      return "Schweiz";
+    }
+
+    return "";
+  };
+
   const handleChange = (
     event: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
@@ -153,18 +196,26 @@ export default function BookingForm() {
     }));
   };
 
-  const fromLabel =
-    form.from === "Nordmazedonien" && locale === "sq"
-      ? "Maqedonia e Veriut"
-      : form.from;
-
-  const toLabel =
-    form.to === "Nordmazedonien" && locale === "sq"
-      ? "Maqedonia e Veriut"
-      : form.to;
+  const fromLabel = getCountryLabel(form.from);
+  const toLabel = getCountryLabel(form.to);
 
   const whatsappMessage =
-    locale === "sq"
+    locale === "mk"
+      ? `Здраво, сакам да направам резервација.
+
+Тип на патување: ${tripType === "return" ? "Повратен билет" : "Еден правец"}
+Име: ${form.fullName || "-"}
+Телефон: ${form.phone || "-"}
+Од: ${fromLabel || "-"} - ${form.fromCity || "-"}
+До: ${toLabel || "-"} - ${form.toCity || "-"}
+Датум на поаѓање: ${form.departureDate || "-"}
+${tripType === "return" ? `Датум на враќање: ${form.returnDate || "-"}` : ""}
+Патници: ${form.persons}
+Порака: ${form.note || "-"}
+
+Ве молам потврдете дали има слободни места.
+Ви благодарам!`
+      : locale === "sq"
       ? `Përshëndetje, dua të bëj një rezervim.
 
 Lloji i udhëtimit: ${tripType === "return" ? "Vajtje-ardhje" : "Një drejtim"}
@@ -250,12 +301,17 @@ Vielen Dank!`;
 
           <div className={styles.field}>
             <label>{content.from}</label>
-            <select name="from" value={form.from} onChange={handleChange} required>
+            <select
+              name="from"
+              value={form.from}
+              onChange={handleChange}
+              required
+            >
               <option value="">{content.chooseCountry}</option>
-              <option value="Deutschland">Deutschland</option>
-              <option value="Schweiz">Schweiz</option>
+              <option value="Deutschland">{getCountryLabel("Deutschland")}</option>
+              <option value="Schweiz">{getCountryLabel("Schweiz")}</option>
               <option value="Nordmazedonien">
-                {locale === "sq" ? "Maqedonia e Veriut" : "Nordmazedonien"}
+                {getCountryLabel("Nordmazedonien")}
               </option>
             </select>
           </div>
@@ -284,10 +340,10 @@ Vielen Dank!`;
             <select name="to" value={form.to} onChange={handleChange} required>
               <option value="">{content.chooseCountry}</option>
               <option value="Nordmazedonien">
-                {locale === "sq" ? "Maqedonia e Veriut" : "Nordmazedonien"}
+                {getCountryLabel("Nordmazedonien")}
               </option>
-              <option value="Deutschland">Deutschland</option>
-              <option value="Schweiz">Schweiz</option>
+              <option value="Deutschland">{getCountryLabel("Deutschland")}</option>
+              <option value="Schweiz">{getCountryLabel("Schweiz")}</option>
             </select>
           </div>
 

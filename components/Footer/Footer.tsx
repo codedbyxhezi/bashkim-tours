@@ -20,9 +20,17 @@ export default function Footer() {
             <p className={styles.brandText}>{t.footer.text}</p>
 
             <div className={styles.infoPills}>
-              <span>Busreisen</span>
-              <span>Tickets</span>
-              <span>Hin & Zurück</span>
+              <span>
+                {t.footer.busTrips}
+              </span>
+
+              <span>
+                {t.footer.tickets}
+              </span>
+
+              <span>
+                {t.footer.returnTrips}
+              </span>
             </div>
           </div>
 
@@ -40,9 +48,20 @@ export default function Footer() {
           <div className={styles.column}>
             <h4 className={styles.heading}>{t.footer.contact}</h4>
             <div className={styles.contactList}>
-              <p><span>Telefon</span>+49 123 456789</p>
-              <p><span>E-Mail</span>info@bashkimtours.com</p>
-              <p><span>Adresse</span>Dervish Cara 4 <br /> 1200 Tetovë</p>
+              <p>
+                <span>{t.footer.phone}</span>
+                +49 123 456789
+              </p>
+
+              <p>
+                <span>{t.footer.email}</span>
+                info@bashkimtours.com
+              </p>
+
+              <p>
+                <span>{t.footer.address}</span>
+                Dervish Cara 4 <br /> 1200 Tetovë
+              </p>
             </div>
           </div>
 

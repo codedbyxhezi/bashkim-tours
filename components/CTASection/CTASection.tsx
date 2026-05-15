@@ -7,22 +7,33 @@ import { useLanguage } from "@/components/LanguageProvider/LanguageProvider";
 export default function CTASection() {
   const { locale } = useLanguage();
 
-  const content =
-    locale === "sq"
-      ? {
-          badge: "Fillo tani",
-          title: "Siguro udhëtimin tënd të radhës tani",
-          text: "Gjej lidhjet e përshtatshme mes Gjermanisë dhe Maqedonisë së Veriut dhe dërgo kërkesën për rezervim në disa hapa.",
-          primary: "Kërko bileta",
-          secondary: "Na kontakto",
-        }
-      : {
-          badge: "Jetzt starten",
-          title: "Sichern Sie sich jetzt Ihre nächste Fahrt",
-          text: "Finden Sie passende Verbindungen zwischen Deutschland und Nordmazedonien und senden Sie Ihre Buchungsanfrage in wenigen Schritten.",
-          primary: "Jetzt Ticket suchen",
-          secondary: "Kontakt aufnehmen",
-        };
+const content =
+  locale === "mk"
+    ? {
+        badge: "Започни сега",
+        title: "Обезбедете го вашето следно патување",
+        text:
+          "Пронајдете соодветни линии помеѓу Германија и Северна Македонија и испратете барање за резервација во неколку чекори.",
+        primary: "Пребарај билет",
+        secondary: "Контактирај нè",
+      }
+    : locale === "sq"
+    ? {
+        badge: "Fillo tani",
+        title: "Siguro udhëtimin tënd të radhës tani",
+        text:
+          "Gjej lidhjet e përshtatshme mes Gjermanisë dhe Maqedonisë së Veriut dhe dërgo kërkesën për rezervim në disa hapa.",
+        primary: "Kërko bileta",
+        secondary: "Na kontakto",
+      }
+    : {
+        badge: "Jetzt starten",
+        title: "Sichern Sie sich jetzt Ihre nächste Fahrt",
+        text:
+          "Finden Sie passende Verbindungen zwischen Deutschland und Nordmazedonien und senden Sie Ihre Buchungsanfrage in wenigen Schritten.",
+        primary: "Jetzt Ticket suchen",
+        secondary: "Kontakt aufnehmen",
+      };
 
   return (
     <section className={styles.section}>

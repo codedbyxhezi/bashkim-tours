@@ -110,6 +110,12 @@ const de = {
     rights: "Alle Rechte vorbehalten.",
     impressum: "Impressum",
     privacy: "Datenschutz",
+    busTrips: "Busreisen",
+    tickets: "Tickets",
+    returnTrips: "Hin & Zurück",
+    phone: "Telefon",
+    email: "E-Mail",
+    address: "Adresse",
   },
 
   contact: {

@@ -110,6 +110,12 @@ const mk = {
     rights: "Сите права се задржани.",
     impressum: "Импресум",
     privacy: "Приватност",
+    busTrips: "Автобуски патувања",
+    tickets: "Билети",
+    returnTrips: "Повратен билет",
+    phone: "Телефон",
+    email: "Е-пошта",
+    address: "Адреса",    
   },
 
   contact: {

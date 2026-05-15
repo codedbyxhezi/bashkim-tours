@@ -6,36 +6,60 @@ import { useLanguage } from "@/components/LanguageProvider/LanguageProvider";
 export default function Testimonials() {
   const { t, locale } = useLanguage();
 
-  const testimonials =
-    locale === "sq"
-      ? [
-          {
-            name: "Arben",
-            text: "Shërbim shumë i mirë dhe udhëtim i rehatshëm. Do të udhëtoj përsëri.",
-          },
-          {
-            name: "Elira",
-            text: "Gjithçka ishte shumë mirë. Komunikim i shpejtë dhe shoferë profesionalë.",
-          },
-          {
-            name: "Blerim",
-            text: "Rezervimi përmes WhatsApp ishte shumë i lehtë. Udhëtim i sigurt dhe korrekt.",
-          },
-        ]
-      : [
-          {
-            name: "Arben",
-            text: "Sehr guter Service und eine komfortable Reise. Ich werde wieder buchen.",
-          },
-          {
-            name: "Elira",
-            text: "Alles war sehr gut. Schnelle Kommunikation und professionelle Fahrer.",
-          },
-          {
-            name: "Blerim",
-            text: "Die Buchung über WhatsApp war sehr einfach. Sichere und zuverlässige Fahrt.",
-          },
-        ];
+const testimonials =
+  locale === "mk"
+    ? [
+        {
+          name: "Arben",
+          text:
+            "Многу добра услуга и удобно патување. Повторно би патувал.",
+        },
+        {
+          name: "Elira",
+          text:
+            "Сè беше одлично. Брза комуникација и професионални возачи.",
+        },
+        {
+          name: "Blerim",
+          text:
+            "Резервацијата преку WhatsApp беше многу лесна. Безбедно и сигурно патување.",
+        },
+      ]
+    : locale === "sq"
+    ? [
+        {
+          name: "Arben",
+          text:
+            "Shërbim shumë i mirë dhe udhëtim i rehatshëm. Do të udhëtoj përsëri.",
+        },
+        {
+          name: "Elira",
+          text:
+            "Gjithçka ishte shumë mirë. Komunikim i shpejtë dhe shoferë profesionalë.",
+        },
+        {
+          name: "Blerim",
+          text:
+            "Rezervimi përmes WhatsApp ishte shumë i lehtë. Udhëtim i sigurt dhe korrekt.",
+        },
+      ]
+    : [
+        {
+          name: "Arben",
+          text:
+            "Sehr guter Service und eine komfortable Reise. Ich werde wieder buchen.",
+        },
+        {
+          name: "Elira",
+          text:
+            "Alles war sehr gut. Schnelle Kommunikation und professionelle Fahrer.",
+        },
+        {
+          name: "Blerim",
+          text:
+            "Die Buchung über WhatsApp war sehr einfach. Sichere und zuverlässige Fahrt.",
+        },
+      ];
 
   return (
     <section className={styles.section}>

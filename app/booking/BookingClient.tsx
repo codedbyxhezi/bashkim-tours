@@ -181,15 +181,20 @@ return (
             <article className={styles.scheduleCard}>
               <div className={styles.cardHeader}>
                 <h3>
-                  {locale === "sq"
+                  {locale === "mk"
+                    ? "Поаѓања од Македонија"
+                    : locale === "sq"
                     ? "Nisjet nga Maqedonia"
                     : "Abfahrten aus Nordmazedonien"}
                 </h3>
+
                 <p>
-                {locale === "sq"
-                  ? "Drejt Gjermanisë"
-                  : "Richtung Deutschland"}
-              </p>
+                  {locale === "mk"
+                    ? "Кон Германија"
+                    : locale === "sq"
+                    ? "Drejt Gjermanisë"
+                    : "Richtung Deutschland"}
+                </p>
               </div>
 
               <div className={styles.tableWrapper}>
@@ -219,13 +224,17 @@ return (
             <article className={styles.scheduleCard}>
               <div className={styles.cardHeader}>
                 <h3>
-                  {locale === "sq"
+                  {locale === "mk"
+                    ? "Поаѓања од Германија"
+                    : locale === "sq"
                     ? "Nisjet nga Gjermania"
                     : "Abfahrten aus Deutschland"}
                 </h3>
 
                 <p>
-                  {locale === "sq"
+                  {locale === "mk"
+                    ? "Кон Северна Македонија"
+                    : locale === "sq"
                     ? "Drejt Maqedonisë së Veriut"
                     : "Richtung Nordmazedonien"}
                 </p>
@@ -267,13 +276,17 @@ return (
             <article className={styles.scheduleCard}>
               <div className={styles.cardHeader}>
                 <h3>
-                  {locale === "sq"
+                  {locale === "mk"
+                    ? "Поаѓања од Македонија"
+                    : locale === "sq"
                     ? "Nisjet nga Maqedonia"
                     : "Abfahrten aus Nordmazedonien"}
                 </h3>
 
                 <p>
-                  {locale === "sq"
+                  {locale === "mk"
+                    ? "Кон Швајцарија"
+                    : locale === "sq"
                     ? "Drejt Zvicrës"
                     : "Richtung Schweiz"}
                 </p>
@@ -308,13 +321,17 @@ return (
             <article className={styles.scheduleCard}>
               <div className={styles.cardHeader}>
                 <h3>
-                  {locale === "sq"
+                  {locale === "mk"
+                    ? "Поаѓања од Швајцарија"
+                    : locale === "sq"
                     ? "Nisjet nga Zvicra"
                     : "Abfahrten aus der Schweiz"}
                 </h3>
 
                 <p>
-                  {locale === "sq"
+                  {locale === "mk"
+                    ? "Кон Северна Македонија"
+                    : locale === "sq"
                     ? "Drejt Maqedonisë së Veriut"
                     : "Richtung Nordmazedonien"}
                 </p>

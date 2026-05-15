@@ -110,6 +110,12 @@ const sq = {
     rights: "Të gjitha të drejtat e rezervuara.",
     impressum: "Impressum",
     privacy: "Privatësia",
+    busTrips: "Udhëtime",
+    tickets: "Bileta",
+    returnTrips: "Vajtje & Ardhje",
+    phone: "Telefon",
+    email: "E-Mail",
+    address: "Adresa",
   },
 
   contact: {

@@ -60,8 +60,10 @@ export default function Home() {
       </main>
 
       <TravelOverview />
-      <WhyUs />
-      <HowItWorks />
+      <div className={styles.desktopOnly}>
+        <WhyUs />
+        <HowItWorks />
+      </div>
       <Gallery />
       <CTASection />
       <Testimonials />

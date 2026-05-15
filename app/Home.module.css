@@ -128,6 +128,10 @@
   }
 }
 
+.desktopOnly {
+  display: block;
+}
+
 @media (max-width: 700px) {
   .heroSection {
     min-height: 78vh;
@@ -145,5 +149,22 @@
   .searchButton {
     width: 100%;
     max-width: 260px;
+  }
+}
+
+@media (max-width: 560px) {
+  .desktopOnly {
+    display: none;
+  }
+
+  .heroVideo {
+    display: none;
+  }
+
+  .heroSection {
+    background-image: url("/images/hero.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
   }
 }

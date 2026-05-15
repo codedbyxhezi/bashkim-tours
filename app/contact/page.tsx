@@ -8,45 +8,70 @@ const PHONE = "491234567890";
 export default function ContactPage() {
   const { locale } = useLanguage();
 
-  const content =
-    locale === "sq"
-      ? {
-          badge: "Kontakt",
-          title: "Na kontakto shpejt dhe lehtë",
-          text: "Për rezervime, vende të lira apo pyetje rreth udhëtimit — jemi këtu për të ndihmuar.",
-          whatsapp: "Shkruaj në WhatsApp",
-          phone: "Telefon",
-          email: "E-Mail",
-          address: "Adresa",
-          addressText: "Maqedonia e Veriut",
-          formTitle: "Dërgo një mesazh",
-          formText: "Plotëso formularin dhe ne do të përgjigjemi sa më shpejt.",
-          name: "Emri yt",
-          subject: "Subjekti",
-          message: "Mesazhi yt",
-          send: "Dërgo mesazhin",
-        }
-      : {
-          badge: "Kontakt",
-          title: "Kontaktiere uns schnell und einfach",
-          text: "Für Buchungen, freie Plätze oder Fragen rund um deine Reise — wir helfen dir gerne weiter.",
-          whatsapp: "Auf WhatsApp schreiben",
-          phone: "Telefon",
-          email: "E-Mail",
-          address: "Adresse",
-          addressText: "Nordmazedonien",
-          formTitle: "Nachricht senden",
-          formText: "Fülle das Formular aus und wir melden uns schnellstmöglich zurück.",
-          name: "Dein Name",
-          subject: "Betreff",
-          message: "Deine Nachricht",
-          send: "Nachricht senden",
-        };
+const content =
+  locale === "mk"
+    ? {
+        badge: "Контакт",
+        title: "Контактирајте нè брзо и лесно",
+        text:
+          "За резервации, слободни места или прашања околу патувањето — тука сме да ви помогнеме.",
+        whatsapp: "Пиши на WhatsApp",
+        phone: "Телефон",
+        email: "Е-пошта",
+        address: "Адреса",
+        addressText: "Северна Македонија",
+        formTitle: "Испрати порака",
+        formText:
+          "Пополнете ја формата и ќе ви одговориме што е можно побрзо.",
+        name: "Вашето име",
+        subject: "Наслов",
+        message: "Вашата порака",
+        send: "Испрати порака",
+      }
+    : locale === "sq"
+    ? {
+        badge: "Kontakt",
+        title: "Na kontakto shpejt dhe lehtë",
+        text:
+          "Për rezervime, vende të lira apo pyetje rreth udhëtimit — jemi këtu për të ndihmuar.",
+        whatsapp: "Shkruaj në WhatsApp",
+        phone: "Telefon",
+        email: "E-Mail",
+        address: "Adresa",
+        addressText: "Maqedonia e Veriut",
+        formTitle: "Dërgo një mesazh",
+        formText:
+          "Plotëso formularin dhe ne do të përgjigjemi sa më shpejt.",
+        name: "Emri yt",
+        subject: "Subjekti",
+        message: "Mesazhi yt",
+        send: "Dërgo mesazhin",
+      }
+    : {
+        badge: "Kontakt",
+        title: "Kontaktiere uns schnell und einfach",
+        text:
+          "Für Buchungen, freie Plätze oder Fragen rund um deine Reise — wir helfen dir gerne weiter.",
+        whatsapp: "Auf WhatsApp schreiben",
+        phone: "Telefon",
+        email: "E-Mail",
+        address: "Adresse",
+        addressText: "Nordmazedonien",
+        formTitle: "Nachricht senden",
+        formText:
+          "Fülle das Formular aus und wir melden uns schnellstmöglich zurück.",
+        name: "Dein Name",
+        subject: "Betreff",
+        message: "Deine Nachricht",
+        send: "Nachricht senden",
+      };
 
-  const whatsappMessage =
-    locale === "sq"
-      ? "Përshëndetje, kam një pyetje për Bashkim Tours."
-      : "Hallo, ich habe eine Frage zu Bashkim Tours.";
+const whatsappMessage =
+  locale === "mk"
+    ? "Здраво, имам прашање за Bashkim Tours."
+    : locale === "sq"
+    ? "Përshëndetje, kam një pyetje për Bashkim Tours."
+    : "Hallo, ich habe eine Frage zu Bashkim Tours.";
 
   const whatsappUrl = `https://wa.me/${PHONE}?text=${encodeURIComponent(
     whatsappMessage
@@ -99,7 +124,9 @@ export default function ContactPage() {
                 1200 Tetove
                 <br />
                 {" "}
-                {locale === "sq"
+                {locale === "mk"
+                  ? "Северна Македонија"
+                  : locale === "sq"
                   ? "Maqedonia e Veriut"
                   : "Nordmazedonien"}
               </h2>
