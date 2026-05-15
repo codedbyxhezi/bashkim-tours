@@ -15,7 +15,7 @@ import TravelOverview from "@/components/TravelOverview/TravelOverview";
 import { useLanguage } from "@/components/LanguageProvider/LanguageProvider";
 
 export default function Home() {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
 
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -51,7 +51,11 @@ export default function Home() {
             <p className={styles.text}>{t.hero.subtitle}</p>
 
             <div className={styles.buttonWrapper}>
-              <Link href="/booking" className={styles.searchButton}>
+              <Link
+                key={locale}
+                href="/booking"
+                className={styles.searchButton}
+              >
                 {t.hero.button}
               </Link>
             </div>

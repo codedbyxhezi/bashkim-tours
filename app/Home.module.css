@@ -14,6 +14,7 @@
   height: 100%;
   object-fit: cover;
   z-index: 0;
+  pointer-events: none;
 }
 
 .overlay {
@@ -153,18 +154,17 @@
 }
 
 @media (max-width: 560px) {
-  .desktopOnly {
-    display: none;
-  }
-
   .heroVideo {
     display: none;
   }
 
   .heroSection {
+    min-height: 72vh;
     background-image: url("/images/hero.png");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-color: #10284a;
+    background-attachment: scroll;
   }
 }
